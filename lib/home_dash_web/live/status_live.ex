@@ -15,12 +15,6 @@ defmodule HomeDashWeb.StatusLive do
   def render(assigns) do
     ~L"""
       <div class="flex flex-wrap">
-        <button phx-click="refresh">
-          <img src="images/refresh.svg">
-          Refresh
-        </button>
-      </div>
-      <div class="flex flex-wrap">
         <!--Metric Card-->
         <div class="w-full md:w-1/2 xl:w-1/2 p-3">
             <div class="bg-white border rounded shadow p-2">
@@ -56,11 +50,6 @@ defmodule HomeDashWeb.StatusLive do
         </div>
     </div>
     """
-  end
-
-  def handle_event("refresh", _, socket) do
-    socket = assign_stats(socket)
-    {:noreply, socket}
   end
 
   def handle_info(:tick, socket) do
