@@ -10,16 +10,16 @@ defmodule HomeDashWeb.DataPointController do
     render(conn, "current.json", current)
   end
 
-  def create_electricity_datapoint(conn, %{"value" => value} = params) do
-    with {:ok, %ElectricityDataPoint{} = edp} <- DataPoints.create_electricity_data_point(params) do
+  def create_electricity_datapoint(conn, %{"value" => _value} = params) do
+    with {:ok, %ElectricityDataPoint{}} <- DataPoints.create_electricity_data_point(params) do
       conn
       |> put_status(:created) # what does this do? :)
       |> send_resp(200, "OK")
     end
   end
 
-  def create_gas_datapoint(conn, %{"value" => value} = params) do
-    with {:ok, %GasDataPoint{} = edp} <- DataPoints.create_gas_data_point(params) do
+  def create_gas_datapoint(conn, %{"value" => _value} = params) do
+    with {:ok, %GasDataPoint{}} <- DataPoints.create_gas_data_point(params) do
       conn
       |> put_status(:created) # what does this do? :)
       |> send_resp(200, "OK")

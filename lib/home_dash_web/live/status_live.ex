@@ -59,6 +59,6 @@ defmodule HomeDashWeb.StatusLive do
 
   defp assign_stats(socket) do
     %{gas: g, electricity: e} = DataPoints.current()
-    socket = socket |> assign(electricity: e.value, gas: g.value)
+    socket |> assign(electricity: e.value, gas: g.value)
   end
 end
