@@ -2,7 +2,7 @@ defmodule HomeDash.DataPoints do
   import Ecto.Query, warn: false
   alias HomeDash.Repo
 
-  alias HomeDash.DataPoints.GasDataPoint
+  alias HomeDash.DataPoints.{GasDataPoint, ElectricityDataPoint}
   ##############################################################################
   # Electricity ################################################################
   ##############################################################################
