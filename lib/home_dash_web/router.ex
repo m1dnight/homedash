@@ -15,6 +15,12 @@ defmodule HomeDashWeb.Router do
     plug :accepts, ["json"]
   end
 
+  scope "/api", HomeDashWeb do
+    pipe_through :api
+
+    get "/current", DataPointController, :index
+  end
+
   scope "/", HomeDashWeb do
     pipe_through :browser
 

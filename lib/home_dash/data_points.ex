@@ -3,9 +3,20 @@ defmodule HomeDash.DataPoints do
   alias HomeDash.Repo
 
   alias HomeDash.DataPoints.{GasDataPoint, ElectricityDataPoint}
+
+  def current() do
+    electricity = ElectricityDataPoint |> last() |> Repo.one()
+    gas = GasDataPoint |> last() |> Repo.one()
+
+    %{gas: gas, electricity: electricity}
+  end
   ##############################################################################
   # Electricity ################################################################
   ##############################################################################
+
+  def last_electricity_datapoint() do
+
+  end
 
   def list_electricity_datapoints do
     Repo.all(ElectricityDataPoint)
