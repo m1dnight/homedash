@@ -19,6 +19,8 @@ defmodule HomeDashWeb.Router do
     pipe_through :api
 
     get "/current", DataPointController, :index
+    post "/electricity", DataPointController, :create_electricity_datapoint
+    post "/gas", DataPointController, :create_gas_datapoint
   end
 
   scope "/", HomeDashWeb do
