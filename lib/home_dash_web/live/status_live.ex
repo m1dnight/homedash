@@ -25,7 +25,7 @@ defmodule HomeDashWeb.StatusLive do
                         </div>
                     </div>
                     <div class="flex-1 text-right md:text-center">
-                        <h3 class="font-bold text-3xl"> <%= @gas.value %> m<sup>3</sup></h3>
+                        <h3 class="font-bold text-3xl"> <%= @gas.value |> show_measurement(3) %> m<sup>3</sup></h3>
                         <p class="text-gray-500">Last update: <%= format_datetime(@electricity.read_on) %></p>
 
                     </div>
@@ -43,7 +43,7 @@ defmodule HomeDashWeb.StatusLive do
                         </div>
                     </div>
                     <div class="flex-1 text-right md:text-center">
-                        <h3 class="font-bold text-3xl"> <%= @electricity.value %> kW</h3>
+                        <h3 class="font-bold text-3xl"> <%= @electricity.value  |> show_measurement(3)%> kW</h3>
                         <p class="text-gray-500">Last update: <%= format_datetime(@electricity.read_on) %></p>
                     </div>
                 </div>
@@ -60,7 +60,7 @@ defmodule HomeDashWeb.StatusLive do
                         </div>
                     </div>
                     <div class="flex-1 text-right md:text-center">
-                        <h3 class="font-bold text-3xl"> <%= @solar.value %> kW</h3>
+                        <h3 class="font-bold text-3xl"> <%= @solar.value  |> show_measurement(3)%> kW</h3>
                         <p class="text-gray-500">Last update: <%= format_datetime(@solar.read_on) %></p>
                     </div>
                 </div>
@@ -81,6 +81,14 @@ defmodule HomeDashWeb.StatusLive do
   end
 
   def format_datetime(dt) do
-    "#{dt.day}/#{dt.month}/#{dt.year} #{dt.hour}:#{dt.minute}:#{dt.second}"
+
+    hour = "#{dt.hour}" |> String.pad_leading(2, "0")
+    minute = "#{dt.minute}" |> String.pad_leading(2, "0")
+    second = "#{dt.second}" |> String.pad_leading(2, "0")
+    "#{dt.day}/#{dt.month}/#{dt.year} #{hour}:#{minute}:#{second}"
+  end
+
+  def show_measurement(float, decimals) do
+    float |> Float.ceil(decimals)
   end
 end
