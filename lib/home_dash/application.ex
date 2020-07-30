@@ -11,9 +11,11 @@ defmodule HomeDash.Application do
       # Start the Ecto repository
       HomeDash.Repo,
       # Start the endpoint when the application starts
-      HomeDashWeb.Endpoint
+      HomeDashWeb.Endpoint,
       # Starts a worker by calling: HomeDash.Worker.start_link(arg)
       # {HomeDash.Worker, arg},
+      # PubSub server
+      {Phoenix.PubSub, [name: HomeDash.PubSub, adapter: Phoenix.PubSub.PG2]}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

@@ -7,6 +7,5 @@ defmodule HomeDash.Repo.Migrations.CreateElectricityDatapoints do
 
       timestamps()
     end
-
   end
 end

@@ -10,14 +10,14 @@ db_host =
     environment variable DATABASE_HOST is missing.
     """
 
-db_database = System.get_env("DATABASE_DB") || "homedashdb"
-db_username = System.get_env("DATABASE_USER") || "homedash"
-db_password = System.get_env("DATABASE_PASSWORD") || "homedash"
+db_database = System.get_env("DATABASE_DB") || "postgres"
+db_username = System.get_env("DATABASE_USER") || "postgres"
+db_password = System.get_env("DATABASE_PASSWORD") || "postgres"
 db_url = "ecto://#{db_username}:#{db_password}@#{db_host}/#{db_database}"
 
 config :home_dash, HomeDash.Repo,
   url: db_url,
-  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
+  pool_size: 20
 
 ################################################################################
 # Secrets ######################################################################
@@ -30,9 +30,21 @@ secret_key_base =
     You can generate one by calling: mix phx.gen.secret
     """
 
-config :home_dash, MyAppWeb.Endpoint,
-  http: [port: 4000],
-  secret_key_base: secret_key_base
+port = String.to_integer(System.get_env("PORT", "1234"))
 
-# Do not print debug messages in production
-config :logger, level: :debug
+live_view_salt =
+  System.get_env("LIVE_VIEW_SALT") ||
+    raise """
+    environment variable LIVE_VIEW_SALT is missing.
+    You can generate one by calling: mix phx.gen.secret
+    """
+
+config :home_dash, HomeDashWeb.Endpoint,
+  secret_key_base: secret_key_base,
+  url: [host: System.get_env("APP_HOST")],
+  http: [
+    port: port,
+    transport_options: [socket_opts: [:inet6]]
+  ],
+  live_view: [signing_salt: live_view_salt],
+  server: true

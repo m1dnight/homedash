@@ -1,23 +1,18 @@
 # HomeDash
 
-To start your Phoenix server:
-
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Install Node.js dependencies with `cd assets && npm install`
-  * Start Phoenix endpoint with `mix phx.server`
-
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
-
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
-
 # Build / Deploy using Docker 
 
-Home Dash uses a `config/releases.exs` file, so most of the variables need to be set in the environment for it to work. 
+Home Dash uses a `config/releases.exs` file, so most of the variables need to be set in the environment for it to work. The environment is located in `./docker/.env`. Adapt accordingly.
 
- * `SECRET_KEY_BASE` is the secret key base. Generate this using `mix phx.gen.secret`.
- * `DATABASE_HOST=localhost` is the path to the database. This will probably be another Docker container (docker-compose).
- * `HOSTNAME` is the hostname the application will run on, defaults to `example.com`.
+| Env Variable        | Description                                                                  |
+|---------------------|------------------------------------------------------------------------------|
+| `DATABASE_DB`       | The name of the database in the Postgres container.                          |
+| `DATABASE_USER`     | The username for the database container.                                     |
+| `DATABASE_PASSWORD` | Password for the database container.                                         |
+| `APP_HOST`          | The hostname bound to the app. e.g., homedash.example.com.                   |
+| `LIVE_VIEW_SALT`    | The salt to encrypt the LiveView sockets. Generate with `mix phx.gen.secret` |
+| `SECRET_KEY_BASE`   | Secret signging and encryption salt. Generate with `mix phx.gen.secret`.     |
+| `PORT`              | The port on which the application will listen.                               |
 
 
-docker rm -f homedash ; docker run --rm -e HOSNTAME=example.com -e DATABASE_HOST=homedashdb -e SECRET_KEY_BASE=1 -p 4000:4000 --net=homedashnet --name homedash m1dnight/homedash:latest /bin/bashe
+Then build the Docker image by issueing `docker-compose build`. After that, run the application with `docker-compose up -d` and you should be able to access the application.

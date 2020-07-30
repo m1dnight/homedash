@@ -12,5 +12,9 @@ do
 done
 
 bin="/app/bin/home_dash"
+
+# Setup the database.
+eval "$bin eval \"HomeDash.Release.migrate\""
+
 # start the elixir application
 exec "$bin" "start"

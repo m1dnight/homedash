@@ -9,3 +9,8 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+alias HomeDash.DataPoints
+
+DataPoints.create_electricity_data_point(%{value: 0})
+DataPoints.create_gas_data_point(%{value: 0})

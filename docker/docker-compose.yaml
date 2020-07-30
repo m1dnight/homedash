@@ -1,0 +1,35 @@
+version: "3"
+
+networks:
+  internal:
+    external: false
+
+services:
+  app:
+    image: homedash:latest
+    build:
+      context: ../
+    environment:
+      - SECRET_KEY_BASE=${SECRET_KEY_BASE}
+      - LIVE_VIEW_SALT=${LIVE_VIEW_SALT}
+      - DATABASE_DB=${DATABASE_DB}
+      - DATABASE_USER=${DATABASE_USER}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - DATABASE_HOST=db
+      - PORT=${PORT}
+    ports:
+      - ${PORT}:${PORT}
+    networks:
+      - internal
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_DB=${DATABASE_DB}
+    networks:
+      - internal

@@ -15,12 +15,14 @@ config :home_dash, HomeDashWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "7qbmSECQ8DXTdIogzUyE7cWkfkYDfYlXn4cYuEjW8owJNza3XDsc9Dii6OS3PZh/",
   render_errors: [view: HomeDashWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: HomeDash.PubSub, adapter: Phoenix.PubSub.PG2],
+  # pubsub: [name: HomeDash.PubSub, adapter: Phoenix.PubSub.PG2],
+  pubsub_server: HomeDash.PubSub,
   live_view: [signing_salt: "R/RRcygN"]
 
 # Add support for microseconds at the database level
 # avoid having to configure it on every migration file
-config :home_dash, HomeDash.Repo, migration_timestamps: [type: :utc_datetime_usec]
+config :home_dash, HomeDash.Repo,
+  migration_timestamps: [type: :utc_datetime_usec]
 
 # Configures Elixir's Logger
 config :logger, :console,
