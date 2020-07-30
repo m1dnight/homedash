@@ -16,3 +16,10 @@ Home Dash uses a `config/releases.exs` file, so most of the variables need to be
 
 
 Then build the Docker image by issueing `docker-compose build`. After that, run the application with `docker-compose up -d` and you should be able to access the application.
+
+
+# References 
+
+Here are some links I used to make this app. No particular order.
+
+ * https://medium.com/@j.schlacher_32979/release-a-phoenix-application-with-docker-and-postgres-28c6ae8c7184
