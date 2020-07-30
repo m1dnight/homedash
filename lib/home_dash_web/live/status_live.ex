@@ -25,8 +25,9 @@ defmodule HomeDashWeb.StatusLive do
                         </div>
                     </div>
                     <div class="flex-1 text-right md:text-center">
-                        <h5 class="font-bold uppercase text-gray-500">Total Gas Consumption</h5>
-                        <h3 class="font-bold text-3xl"> <%= @gas %> m<sup>3</sup></h3>
+                        <h3 class="font-bold text-3xl"> <%= @gas.value %> m<sup>3</sup></h3>
+                        <p class="text-gray-500">Last update: <%= format_datetime(@electricity.read_on) %></p>
+
                     </div>
                 </div>
             </div>
@@ -42,8 +43,8 @@ defmodule HomeDashWeb.StatusLive do
                         </div>
                     </div>
                     <div class="flex-1 text-right md:text-center">
-                        <h5 class="font-bold uppercase text-gray-500">Total Electricity Consumption</h5>
-                        <h3 class="font-bold text-3xl"> <%= @electricity %> kW</h3>
+                        <h3 class="font-bold text-3xl"> <%= @electricity.value %> kW</h3>
+                        <p class="text-gray-500">Last update: <%= format_datetime(@electricity.read_on) %></p>
                     </div>
                 </div>
             </div>
@@ -59,6 +60,10 @@ defmodule HomeDashWeb.StatusLive do
 
   defp assign_stats(socket) do
     %{gas: g, electricity: e} = DataPoints.current()
-    socket |> assign(electricity: e.value, gas: g.value)
+    socket |> assign(electricity: e, gas: g)
+  end
+
+  def format_datetime(dt) do
+    "#{dt.day}/#{dt.month}/#{dt.year} #{dt.hour}:#{dt.minute}:#{dt.second}"
   end
 end

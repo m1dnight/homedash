@@ -27,8 +27,8 @@ defmodule HomeDashWeb.Router do
     pipe_through :browser
 
     live "/light", LightLive
-    live "/status", StatusLive
-    get "/", PageController, :index
+    live "/", StatusLive
+    # get "/", PageController, :index
   end
 
   # Enables LiveDashboard only for development

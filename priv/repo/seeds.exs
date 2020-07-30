@@ -12,5 +12,6 @@
 
 alias HomeDash.DataPoints
 
-DataPoints.create_electricity_data_point(%{value: 0})
-DataPoints.create_gas_data_point(%{value: 0})
+now = DateTime.now!("Etc/UTC")
+DataPoints.create_electricity_data_point(%{value: 0, read_on: now})
+DataPoints.create_gas_data_point(%{value: 0, read_on: now})
