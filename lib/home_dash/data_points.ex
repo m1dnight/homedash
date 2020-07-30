@@ -10,12 +10,12 @@ defmodule HomeDash.DataPoints do
 
     %{gas: gas, electricity: electricity}
   end
+
   ##############################################################################
   # Electricity ################################################################
   ##############################################################################
 
   def last_electricity_datapoint() do
-
   end
 
   def list_electricity_datapoints do

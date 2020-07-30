@@ -40,7 +40,7 @@ defmodule HomeDashWeb.LightLive do
   end
 
   def handle_event("up", _, socket) do
-    socket = update(socket, :brightness,  &min(&1 + 10, 100))
+    socket = update(socket, :brightness, &min(&1 + 10, 100))
     {:noreply, socket}
   end
 

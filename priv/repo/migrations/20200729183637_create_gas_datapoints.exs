@@ -7,6 +7,5 @@ defmodule HomeDash.Repo.Migrations.CreateGasDatapoints do
 
       timestamps()
     end
-
   end
 end

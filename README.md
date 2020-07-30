@@ -11,10 +11,13 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
 
-## Learn more
+# Build / Deploy using Docker 
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+Home Dash uses a `config/releases.exs` file, so most of the variables need to be set in the environment for it to work. 
+
+ * `SECRET_KEY_BASE` is the secret key base. Generate this using `mix phx.gen.secret`.
+ * `DATABASE_HOST=localhost` is the path to the database. This will probably be another Docker container (docker-compose).
+ * `HOSTNAME` is the hostname the application will run on, defaults to `example.com`.
+
+
+docker rm -f homedash ; docker run --rm -e HOSNTAME=example.com -e DATABASE_HOST=homedashdb -e SECRET_KEY_BASE=1 -p 4000:4000 --net=homedashnet --name homedash m1dnight/homedash:latest /bin/bashe
