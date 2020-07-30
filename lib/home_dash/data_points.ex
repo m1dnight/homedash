@@ -2,13 +2,15 @@ defmodule HomeDash.DataPoints do
   import Ecto.Query, warn: false
   alias HomeDash.Repo
 
-  alias HomeDash.DataPoints.{GasDataPoint, ElectricityDataPoint}
+  alias HomeDash.DataPoints.{GasDataPoint, ElectricityDataPoint, SolarDataPoint}
 
   def current() do
     electricity = ElectricityDataPoint |> last() |> Repo.one()
     gas = GasDataPoint |> last() |> Repo.one()
+    solar = SolarDataPoint |> last() |> Repo.one()
 
-    %{gas: gas, electricity: electricity}
+
+    %{gas: gas, electricity: electricity, solar: solar}
   end
 
   ##############################################################################
@@ -32,6 +34,10 @@ defmodule HomeDash.DataPoints do
     Repo.delete(electricity_data_point)
   end
 
+  @spec change_electricity_data_point(
+          HomeDash.DataPoints.ElectricityDataPoint.t(),
+          :invalid | %{optional(:__struct__) => none, optional(atom | binary) => any}
+        ) :: Ecto.Changeset.t()
   def change_electricity_data_point(
         %ElectricityDataPoint{} = electricity_data_point,
         attrs \\ %{}
@@ -62,5 +68,30 @@ defmodule HomeDash.DataPoints do
         attrs \\ %{}
       ) do
     GasDataPoint.changeset(gas_data_point, attrs)
+  end
+
+  ##############################################################################
+  # Solar ######################################################################
+  ##############################################################################
+
+  def list_solar_datapoints do
+    Repo.all(SolarDataPoint)
+  end
+
+  def create_solar_data_point(attrs \\ %{}) do
+    %SolarDataPoint{}
+    |> SolarDataPoint.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def delete_solar_data_point(%SolarDataPoint{} = solar_data_point) do
+    Repo.delete(solar_data_point)
+  end
+
+  def change_solar_data_point(
+        %SolarDataPoint{} = solar_data_point,
+        attrs \\ %{}
+      ) do
+    SolarDataPoint.changeset(solar_data_point, attrs)
   end
 end

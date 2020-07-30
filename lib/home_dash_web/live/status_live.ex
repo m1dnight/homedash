@@ -16,7 +16,7 @@ defmodule HomeDashWeb.StatusLive do
     ~L"""
       <div class="flex flex-wrap">
         <!--Metric Card-->
-        <div class="w-full md:w-1/2 xl:w-1/2 p-3">
+        <div class="w-full md:w-1/3 xl:w-1/3 p-3">
             <div class="bg-white border rounded shadow p-2">
                 <div class="flex flex-row items-center">
                     <div class="flex-shrink pr-4">
@@ -34,7 +34,7 @@ defmodule HomeDashWeb.StatusLive do
         </div>
 
         <!--Metric Card-->
-        <div class="w-full md:w-1/2 xl:w-1/2 p-3">
+        <div class="w-full md:w-1/3 xl:w-1/3 p-3">
             <div class="bg-white border rounded shadow p-2">
                 <div class="flex flex-row items-center">
                     <div class="flex-shrink pr-4">
@@ -49,6 +49,23 @@ defmodule HomeDashWeb.StatusLive do
                 </div>
             </div>
         </div>
+
+        <!--Metric Card-->
+        <div class="w-full md:w-1/3 xl:w-1/3 p-3">
+            <div class="bg-white border rounded shadow p-2">
+                <div class="flex flex-row items-center">
+                    <div class="flex-shrink pr-4">
+                        <div class="rounded p-3 bg-yellow-300">
+                            <i class="fa fa-sun fa-2x fa-fw fa-inverse"></i>
+                        </div>
+                    </div>
+                    <div class="flex-1 text-right md:text-center">
+                        <h3 class="font-bold text-3xl"> <%= @solar.value %> kW</h3>
+                        <p class="text-gray-500">Last update: <%= format_datetime(@solar.read_on) %></p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     """
   end
@@ -59,8 +76,8 @@ defmodule HomeDashWeb.StatusLive do
   end
 
   defp assign_stats(socket) do
-    %{gas: g, electricity: e} = DataPoints.current()
-    socket |> assign(electricity: e, gas: g)
+    %{gas: g, electricity: e, solar: s} = DataPoints.current()
+    socket |> assign(electricity: e, gas: g, solar: s)
   end
 
   def format_datetime(dt) do
