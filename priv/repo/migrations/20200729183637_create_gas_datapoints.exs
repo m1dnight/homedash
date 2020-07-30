@@ -4,6 +4,7 @@ defmodule HomeDash.Repo.Migrations.CreateGasDatapoints do
   def change do
     create table(:gas_datapoints) do
       add :value, :float
+      add :read_on, :utc_datetime
 
       timestamps()
     end

@@ -4,6 +4,7 @@ defmodule HomeDash.DataPoints.ElectricityDataPoint do
 
   schema "electricity_datapoints" do
     field :value, :float
+    field :read_on, :utc_datetime
 
     timestamps()
   end
@@ -11,7 +12,7 @@ defmodule HomeDash.DataPoints.ElectricityDataPoint do
   @doc false
   def changeset(electricity_data_point, attrs) do
     electricity_data_point
-    |> cast(attrs, [:value])
-    |> validate_required([:value])
+    |> cast(attrs, [:value, :read_on])
+    |> validate_required([:value, :read_on])
   end
 end
