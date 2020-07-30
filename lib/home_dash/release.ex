@@ -7,17 +7,15 @@ defmodule HomeDash.Release do
     :ecto
   ]
 
-
-
   # This function will be called by the
   def migrate do
     prepare()
+
     for repo <- repos() do
       {:ok, _, _} = Ecto.Migrator.with_repo(repo, &Ecto.Migrator.run(&1, :up, all: true))
       seed(repo)
     end
   end
-
 
   # Prepare the applications necessary to run the seeds.
   defp prepare do
