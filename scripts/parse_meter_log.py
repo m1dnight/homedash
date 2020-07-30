@@ -38,12 +38,12 @@ def parse_readout(input):
                 float_str = match.group(1)
                 result['night_use'] = float_str
 
-            elif first.startswith("1-0:1.8.2"):
+            elif first.startswith("1-0:2.8.1"):
                 match = re.search("\((\d+\.\d+)\*kWh\)", first)
                 float_str = match.group(1)
                 result['day_inject'] = float_str
 
-            elif first.startswith("1-0:2.8.1"):
+            elif first.startswith("1-0:2.8.2"):
                 match = re.search("\((\d+\.\d+)\*kWh\)", first)
                 float_str = match.group(1)
                 result['night_inject'] = float_str
@@ -86,9 +86,11 @@ def post_dict(dict):
     print(dict)
     gas = {'value': float(dict['gas']), 'read_on': dict['when']}
     elec = {'value': float(dict['day_use']) + float(dict['night_use']), 'read_on': dict['when']}
+    solar = {'value': float(dict['day_inject']) + float(dict['night_inject']), 'read_on': dict['when']}
     print(json.dumps(gas))
     requests.post(host + '/api/gas', json=gas)
     requests.post(host + '/api/electricity', json=elec)
+    requests.post(host + '/api/solar', json=solar)
     
 for dict in dicts:
     dict['when'] = dict['when'].strftime("%Y-%m-%dT%H:%M:%S.%fZ")
