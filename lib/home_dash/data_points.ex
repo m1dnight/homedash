@@ -6,22 +6,57 @@ defmodule HomeDash.DataPoints do
 
   def current() do
     electricity = ElectricityDataPoint |> last() |> Repo.one()
+    electricity_today = total_electricity_today()
     gas = GasDataPoint |> last() |> Repo.one()
+    gas_today = total_gas_today()
     solar = SolarDataPoint |> last() |> Repo.one()
+    solar_today = total_solar_today()
 
-
-    %{gas: gas, electricity: electricity, solar: solar}
+    %{
+      gas: gas,
+      electricity: electricity,
+      solar: solar,
+      electricity_today: electricity_today,
+      gas_today: gas_today,
+      solar_today: solar_today
+    }
   end
 
   ##############################################################################
   # Electricity ################################################################
   ##############################################################################
 
-  def last_electricity_datapoint() do
-  end
-
   def list_electricity_datapoints do
     Repo.all(ElectricityDataPoint)
+  end
+
+  def total_electricity_today() do
+    today = list_electricity_datapoints_since(start_of_day())
+
+    case today do
+      [] ->
+        0.0
+
+      [reading] ->
+        reading.value
+
+      _ ->
+        last_measurement = List.last(today)
+        first_measurement = List.first(today)
+        last_measurement.value - first_measurement.value
+    end
+  end
+
+  def list_electricity_datapoints_since(start) do
+    list_electricity_datapoints_between(start, DateTime.now!("Etc/UTC"))
+  end
+
+  def list_electricity_datapoints_between(start, finish) do
+    query =
+      from dp in ElectricityDataPoint,
+        where: dp.read_on > ^start and dp.read_on < ^finish
+
+    Repo.all(query)
   end
 
   def create_electricity_data_point(attrs \\ %{}) do
@@ -53,6 +88,35 @@ defmodule HomeDash.DataPoints do
     Repo.all(GasDataPoint)
   end
 
+  def total_gas_today() do
+    today = list_gas_datapoints_since(start_of_day())
+
+    case today do
+      [] ->
+        0.0
+
+      [reading] ->
+        reading.value
+
+      _ ->
+        last_measurement = List.last(today)
+        first_measurement = List.first(today)
+        last_measurement.value - first_measurement.value
+    end
+  end
+
+  def list_gas_datapoints_since(start) do
+    list_gas_datapoints_between(start, DateTime.now!("Etc/UTC"))
+  end
+
+  def list_gas_datapoints_between(start, finish) do
+    query =
+      from dp in GasDataPoint,
+        where: dp.read_on > ^start and dp.read_on < ^finish
+
+    Repo.all(query)
+  end
+
   def create_gas_data_point(attrs \\ %{}) do
     %GasDataPoint{}
     |> GasDataPoint.changeset(attrs)
@@ -78,6 +142,35 @@ defmodule HomeDash.DataPoints do
     Repo.all(SolarDataPoint)
   end
 
+  def total_solar_today() do
+    today = list_solar_datapoints_since(start_of_day())
+
+    case today do
+      [] ->
+        0.0
+
+      [reading] ->
+        reading.value
+
+      _ ->
+        last_measurement = List.last(today)
+        first_measurement = List.first(today)
+        last_measurement.value - first_measurement.value
+    end
+  end
+
+  def list_solar_datapoints_since(start) do
+    list_solar_datapoints_between(start, DateTime.now!("Etc/UTC"))
+  end
+
+  def list_solar_datapoints_between(start, finish) do
+    query =
+      from dp in SolarDataPoint,
+        where: dp.read_on > ^start and dp.read_on < ^finish
+
+    Repo.all(query)
+  end
+
   def create_solar_data_point(attrs \\ %{}) do
     %SolarDataPoint{}
     |> SolarDataPoint.changeset(attrs)
@@ -93,5 +186,17 @@ defmodule HomeDash.DataPoints do
         attrs \\ %{}
       ) do
     SolarDataPoint.changeset(solar_data_point, attrs)
+  end
+
+  ##############################################################################
+  # Helpers ####################################################################
+  ##############################################################################
+
+  def start_of_day() do
+    DateTime.now!("Etc/UTC")
+    |> Map.put(:hour, 0)
+    |> Map.put(:minute, 0)
+    |> Map.put(:second, 0)
+    |> Map.put(:microsecond, {0, 0})
   end
 end
