@@ -32,11 +32,12 @@ defmodule HomeDash.DataPoints do
 
   def last_electricity_reading() do
     query =
-      (from dp in ElectricityDataPoint,
-        order_by: [desc: :read_on])
-        |> first()
+      from(dp in ElectricityDataPoint,
+        order_by: [desc: :read_on]
+      )
+      |> first()
 
-    Repo.all(query)
+    Repo.one(query)
   end
 
   def total_electricity_today() do
@@ -99,11 +100,12 @@ defmodule HomeDash.DataPoints do
 
   def last_gas_reading() do
     query =
-      (from dp in GasDataPoint,
-        order_by: [desc: :read_on])
-        |> first()
+      from(dp in GasDataPoint,
+        order_by: [desc: :read_on]
+      )
+      |> first()
 
-    Repo.all(query)
+    Repo.one(query)
   end
 
   def total_gas_today() do
@@ -162,11 +164,12 @@ defmodule HomeDash.DataPoints do
 
   def last_solar_reading() do
     query =
-      (from dp in SolarDataPoint,
-        order_by: [desc: :read_on])
-        |> first()
+      from(dp in SolarDataPoint,
+        order_by: [desc: :read_on]
+      )
+      |> first()
 
-    Repo.all(query)
+    Repo.one(query)
   end
 
   def total_solar_today() do
