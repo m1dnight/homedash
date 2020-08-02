@@ -5,11 +5,11 @@ defmodule HomeDash.DataPoints do
   alias HomeDash.DataPoints.{GasDataPoint, ElectricityDataPoint, SolarDataPoint}
 
   def current() do
-    electricity = ElectricityDataPoint |> last() |> Repo.one()
+    electricity = last_electricity_reading()
     electricity_today = total_electricity_today()
-    gas = GasDataPoint |> last() |> Repo.one()
+    gas = last_gas_reading()
     gas_today = total_gas_today()
-    solar = SolarDataPoint |> last() |> Repo.one()
+    solar = last_solar_reading()
     solar_today = total_solar_today()
 
     %{
@@ -28,6 +28,15 @@ defmodule HomeDash.DataPoints do
 
   def list_electricity_datapoints do
     Repo.all(ElectricityDataPoint)
+  end
+
+  def last_electricity_reading() do
+    query =
+      (from dp in ElectricityDataPoint,
+        order_by: [desc: :read_on])
+        |> first()
+
+    Repo.all(query)
   end
 
   def total_electricity_today() do
@@ -88,6 +97,15 @@ defmodule HomeDash.DataPoints do
     Repo.all(GasDataPoint)
   end
 
+  def last_gas_reading() do
+    query =
+      (from dp in GasDataPoint,
+        order_by: [desc: :read_on])
+        |> first()
+
+    Repo.all(query)
+  end
+
   def total_gas_today() do
     today = list_gas_datapoints_since(start_of_day())
 
@@ -140,6 +158,15 @@ defmodule HomeDash.DataPoints do
 
   def list_solar_datapoints do
     Repo.all(SolarDataPoint)
+  end
+
+  def last_solar_reading() do
+    query =
+      (from dp in SolarDataPoint,
+        order_by: [desc: :read_on])
+        |> first()
+
+    Repo.all(query)
   end
 
   def total_solar_today() do
