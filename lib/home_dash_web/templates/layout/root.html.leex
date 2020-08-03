@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class='h-full'>
   <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -11,11 +11,16 @@
     <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
 
-	<body class="container w-full mx-auto pt-20">
-    <h1>Groenenbrielstraat</h1>
-		<!--Container-->
-			<main class="">
-				<%= @inner_content %>
-			</main>
-	</body>
+  <body class='flex flex-col h-full'>
+        <header class='w-full text-center border-b border-grey p-0'>
+           <h1>Groenenbrielstraat</h1>
+        </header>
+        <div id='content' class='flex-1 mx-auto p-8'>
+            <%= @inner_content %>
+        </div>
+        <footer class='w-full text-center border-t border-grey p-4'>
+            Built by Christophe De Troyer with Elixir/Phoenix
+        </footer>
+  </body>
+
 </html>
