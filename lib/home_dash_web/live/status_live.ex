@@ -14,7 +14,8 @@ defmodule HomeDashWeb.StatusLive do
 
   def render(assigns) do
     ~L"""
-    <div class="flex flex-wrap">
+    <!-- Row -->
+        <div class="flex flex-wrap">
         <!--Metric Card-->
         <div class="w-full md:w-1/3 xl:w-1/3 p-3">
             <div class="bg-white border rounded shadow p-2">
@@ -33,6 +34,7 @@ defmodule HomeDashWeb.StatusLive do
                 </div>
             </div>
         </div>
+        <!--/ Metric Card-->
 
         <!--Metric Card-->
         <div class="w-full md:w-1/3 xl:w-1/3 p-3">
@@ -51,6 +53,7 @@ defmodule HomeDashWeb.StatusLive do
                 </div>
             </div>
         </div>
+        <!--/ Metric Card-->
 
         <!--Metric Card-->
         <div class="w-full md:w-1/3 xl:w-1/3 p-3">
@@ -69,8 +72,8 @@ defmodule HomeDashWeb.StatusLive do
                 </div>
             </div>
         </div>
-    </div>
-    <div class="flex flex-wrap">
+        <!--/ Metric Card-->
+
         <!--Metric Card-->
         <div class="w-full md:w-1/3 xl:w-1/3 p-3">
             <div class="bg-white border rounded shadow p-2">
@@ -88,6 +91,7 @@ defmodule HomeDashWeb.StatusLive do
                 </div>
             </div>
         </div>
+        <!--/ Metric Card-->
 
         <!--Metric Card-->
         <div class="w-full md:w-1/3 xl:w-1/3 p-3">
@@ -105,6 +109,7 @@ defmodule HomeDashWeb.StatusLive do
                 </div>
             </div>
         </div>
+        <!--/ Metric Card-->
 
         <!--Metric Card-->
         <div class="w-full md:w-1/3 xl:w-1/3 p-3">
@@ -122,7 +127,56 @@ defmodule HomeDashWeb.StatusLive do
                 </div>
             </div>
         </div>
+        <!--/ Metric Card-->
     </div>
+    <!-- /Row -->
+
+    <!-- Row -->
+    <div class="flex flex-wrap">
+    <div class="w-full md:w-1/1 xl:w-1/1 p-3">
+            <!--Graph Card-->
+            <div class="bg-white border-transparent rounded-lg shadow-lg">
+                <div class="bg-gray-400 uppercase text-gray-800 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2">
+                    <h5 class="font-bold uppercase text-gray-600">Graph</h5>
+                </div>
+                <div class="p-5">
+                    <canvas id="chartjs-7" class="chartjs" width="undefined" height="undefined"></canvas>
+                    <script>
+                        console.log("Executing chart script")
+                        new Chart(document.getElementById("chartjs-7"), {
+                            "type": "bar",
+                            "data": {
+                                "labels": ["January", "February", "March", "April"],
+                                "datasets": [{
+                                    "label": "Page Impressions",
+                                    "data": [10, 20, 30, 40],
+                                    "borderColor": "rgb(255, 99, 132)",
+                                    "backgroundColor": "rgba(255, 99, 132, 0.2)"
+                                }, {
+                                    "label": "Adsense Clicks",
+                                    "data": [5, 15, 10, 30],
+                                    "type": "line",
+                                    "fill": false,
+                                    "borderColor": "rgb(54, 162, 235)"
+                                }]
+                            },
+                            "options": {
+                                "scales": {
+                                    "yAxes": [{
+                                        "ticks": {
+                                            "beginAtZero": true
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+        <!--/Graph Card-->
+    </div>
+    <!-- Row -->
 
     """
   end

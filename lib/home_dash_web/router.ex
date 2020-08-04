@@ -29,7 +29,7 @@ defmodule HomeDashWeb.Router do
 
     live "/light", LightLive
     live "/", StatusLive
-    # get "/", PageController, :index
+    get "/test", PageController, :index
   end
 
   # Enables LiveDashboard only for development
