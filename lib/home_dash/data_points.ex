@@ -8,11 +8,13 @@ defmodule HomeDash.DataPoints do
   def current() do
     electricity = last_electricity_reading()
     electricity_today = total_electricity_today()
-    # electricity_totals = list_electricity_day_totals()
+    electricity_totals = list_electricity_day_totals_last_n_days(7)
     gas = last_gas_reading()
     gas_today = total_gas_today()
+    gas_totals = list_gas_day_totals_last_n_days(7)
     solar = last_solar_reading()
     solar_today = total_solar_today()
+    solar_totals = list_solar_day_totals_last_n_days(7)
 
     %{
       gas: gas,
@@ -20,8 +22,10 @@ defmodule HomeDash.DataPoints do
       solar: solar,
       electricity_today: electricity_today,
       gas_today: gas_today,
-      solar_today: solar_today
-      # electricity_totals: electricity_totals
+      solar_today: solar_today,
+      electricity_totals: electricity_totals,
+      solar_totals: solar_totals,
+      gas_totals: gas_totals
     }
   end
 

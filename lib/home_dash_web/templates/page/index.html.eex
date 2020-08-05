@@ -130,8 +130,8 @@
                            "datasets": [{
                                "label": "kWh",
                                "data": [<%= raw(values(@electricity_totals)) %>],
-                               "borderColor": "rgb(255, 99, 132)",
-                               "backgroundColor": "rgba(255, 99, 132, 0.2)"
+                               "borderColor": "rgb(250, 202, 21)",
+                               "backgroundColor": "rgba(250, 202, 21, 0.2)"
                            }]
                        }
                    });
@@ -144,23 +144,23 @@
       <!--Graph Card-->
       <div class="bg-white border-transparent rounded-lg shadow-lg">
          <div class="bg-gray-400 uppercase text-gray-800 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2">
-            <h5 class="font-bold uppercase text-gray-600">Electricity Week Totals</h5>
+            <h5 class="font-bold uppercase text-gray-600">Gas Week Totals</h5>
          </div>
          <div class="p-5">
-            <canvas id="chartjs-7" class="chartjs" width="undefined" height="undefined"></canvas>
+            <canvas id="chartjs-8" class="chartjs" width="undefined" height="undefined"></canvas>
             <script>
                //foobar
-                   new Chart(document.getElementById("chartjs-7"), {
+                   new Chart(document.getElementById("chartjs-8"), {
 
                        "type": "bar",
                        "data": {
                            //"labels": ["January", "February", "March", "April"],
-                           "labels": [<%= raw(labels(@electricity_totals)) %>],
+                           "labels": [<%= raw(labels(@gas_totals)) %>],
                            "datasets": [{
-                               "label": "kWh",
-                               "data": [<%= raw(values(@electricity_totals)) %>],
-                               "borderColor": "rgb(255, 99, 132)",
-                               "backgroundColor": "rgba(255, 99, 132, 0.2)"
+                               "label": "m3",
+                               "data": [<%= raw(values(@gas_totals)) %>],
+                               "borderColor": "rgb(206, 18, 18)",
+                               "backgroundColor": "rgba(206, 18, 18, 0.2)"
                            }]
                        }
                    });
@@ -173,23 +173,23 @@
       <!--Graph Card-->
       <div class="bg-white border-transparent rounded-lg shadow-lg">
          <div class="bg-gray-400 uppercase text-gray-800 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2">
-            <h5 class="font-bold uppercase text-gray-600">Electricity Week Totals</h5>
+            <h5 class="font-bold uppercase text-gray-600">Solar Week Totals</h5>
          </div>
          <div class="p-5">
-            <canvas id="chartjs-7" class="chartjs" width="undefined" height="undefined"></canvas>
+            <canvas id="chartjs-9" class="chartjs" width="undefined" height="undefined"></canvas>
             <script>
                //foobar
-                   new Chart(document.getElementById("chartjs-7"), {
+                   new Chart(document.getElementById("chartjs-9"), {
 
                        "type": "bar",
                        "data": {
                            //"labels": ["January", "February", "March", "April"],
-                           "labels": [<%= raw(labels(@electricity_totals)) %>],
+                           "labels": [<%= raw(labels(@solar_totals)) %>],
                            "datasets": [{
                                "label": "kWh",
-                               "data": [<%= raw(values(@electricity_totals)) %>],
-                               "borderColor": "rgb(255, 99, 132)",
-                               "backgroundColor": "rgba(255, 99, 132, 0.2)"
+                               "data": [<%= raw(values(@solar_totals)) %>],
+                               "borderColor": "rgb(250, 202, 21)",
+                               "backgroundColor": "rgba(250, 202, 21, 0.2)"
                            }]
                        }
                    });

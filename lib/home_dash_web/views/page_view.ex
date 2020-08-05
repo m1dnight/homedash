@@ -14,16 +14,20 @@ defmodule HomeDashWeb.PageView do
 
   # Day usage charts.
   def labels(dataset) do
+    IO.inspect(dataset)
+
     dataset
-    |> Enum.map(fn {_value, date} ->
-      ~s("#{date.day}/#{date.month}")
+    |> Enum.map(fn {date, _value} ->
+      day = String.pad_leading("#{date.day}", 2, "0")
+      month = String.pad_leading("#{date.month}", 2, "0")
+      ~s("#{day}/#{month}")
     end)
     |> Enum.join(", ")
   end
 
   def values(dataset) do
     dataset
-    |> Enum.map(fn {value, _date} -> "#{value}" end)
+    |> Enum.map(fn {_date, value} -> "#{value}" end)
     |> Enum.join(", ")
   end
 end
