@@ -27,7 +27,7 @@ config :home_dash, HomeDash.Repo, migration_timestamps: [type: :utc_datetime_use
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id],
-  level: :error
+  level: :debug
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason

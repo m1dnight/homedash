@@ -135,7 +135,7 @@ defmodule HomeDashWeb.StatusLive do
     <div class="flex flex-wrap">
     <div class="w-full md:w-1/1 xl:w-1/1 p-3">
             <!--Graph Card-->
-            <div class="bg-white border-transparent rounded-lg shadow-lg">
+            <div class="bg-white border-transparent rounded-lg shadow-lg"phx-update="ignore">
                 <div class="bg-gray-400 uppercase text-gray-800 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2">
                     <h5 class="font-bold uppercase text-gray-600">Graph</h5>
                 </div>
@@ -187,8 +187,7 @@ defmodule HomeDashWeb.StatusLive do
   end
 
   defp assign_stats(socket) do
-    %{gas: g, electricity: e, solar: s, solar_today: std, gas_today: gtd, electricity_today: etd} =
-      DataPoints.current()
+    %{gas: g, electricity: e, solar: s, solar_today: std, gas_today: gtd, electricity_today: etd} = DataPoints.current()
 
     socket
     |> assign(

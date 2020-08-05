@@ -33,21 +33,72 @@ defmodule HomeDash.DataPoints.Macros do
       end
 
     # ---------------------------------------------------------------------------
+    # total_*_usage_in_range
+
+    function_name = "total_#{name}_usage_in_range" |> String.to_atom()
+    frag_max = "select max(read_on) from #{name}_datapoints where read_on between ? and ?"
+    frag_min = "select min(read_on) from #{name}_datapoints where read_on between ? and ?"
+
+    total_usage_in_range =
+      quote do
+        def unquote(function_name)(%DateTime{} = start, %DateTime{} = finish) do
+          # Get the oldest measurement first.
+          query =
+            from dp in unquote(struct_name),
+              where: dp.read_on in fragment(unquote(frag_min), ^start, ^finish),
+              select: dp
+
+          first_reading = Repo.one(query)
+          # Get the lowest measurement first.
+          query =
+            from dp in unquote(struct_name),
+              where:
+                dp.read_on in fragment(
+                  unquote(frag_max),
+                  ^start,
+                  ^finish
+                ),
+              select: dp
+
+          last_reading = Repo.one(query)
+
+          case {last_reading, first_reading} do
+            {nil, nil} ->
+              0.0
+
+            {nil, reading} ->
+              reading.value
+
+            {reading, nil} ->
+              reading.value
+
+            {reading, reading} ->
+              reading.value
+
+            {max, min} ->
+              max.value - min.value
+          end
+        end
+      end
+
+    # ---------------------------------------------------------------------------
     # list_*_day_totals
-    function_name = "list_#{name}_day_totals" |> String.to_atom()
+    function_name = "list_#{name}_day_totals_last_n_days" |> String.to_atom()
 
     list_day_totals =
       quote do
-        def unquote(function_name)() do
-          # query = from dp in ElectricityDataPoint, select: count(dp)
-          query =
-            from dp in unquote(struct_name),
-              group_by: fragment("date_trunc('day', ?)", dp.read_on),
-              order_by: fragment("date_trunc('day', ?)", dp.read_on),
-              limit: 7,
-              select: {fragment("sum(value)"), fragment("date_trunc('day', ?)", dp.read_on)}
+        def unquote(function_name)(n \\ 7) do
+          0..(n - 1)
+          |> Enum.map(fn day ->
+            day =
+              DateTime.now!("Etc/UTC")
+              |> start_of_day()
+              |> DateTime.add(-1 * day * 24 * 60 * 60, :second, Calendar.get_time_zone_database())
 
-          Repo.all(query)
+            day_start = start_of_day(day)
+            day_end = end_of_day(day)
+            {day |> DateTime.to_date(), unquote(String.to_atom("total_#{name}_usage_in_range"))(day_start, day_end)}
+          end)
         end
       end
 
@@ -154,6 +205,7 @@ defmodule HomeDash.DataPoints.Macros do
       unquote(create_data_point)
       unquote(delete_data_point)
       unquote(change_data_point)
+      unquote(total_usage_in_range)
     end
   end
 

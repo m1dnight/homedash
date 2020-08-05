@@ -48,3 +48,14 @@ docker run --rm              \
            -e PGPASSWORD=homedash \
            postgres          \
            psql -h homedashdb -U postgres -c "CREATE DATABASE ${database} OWNER ${username};"
+
+
+# REPL
+
+docker run --rm                   \
+           -it                    \
+           --name pg-tmp          \
+           --net=homedashnet      \
+           -e PGPASSWORD=homedash \
+           postgres               \
+           psql -h homedashdb -U homedash homedashdb
