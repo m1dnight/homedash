@@ -123,8 +123,38 @@ defmodule HomeDashWeb.StatusLive do
     <!--/ Metric Card-->
     </div>
     <!-- /Row -->
+
     <!-- Row -->
-    <div class="flex flex-wrap">
+    <div class="flex flex-wrap" phx-update="ignore">
+
+    <div class="w-full md:w-1/3 xl:w-1/3 p-3">
+    <!--Graph Card-->
+    <div class="bg-white border-transparent rounded-lg shadow-lg">
+       <div class="bg-gray-400 uppercase text-gray-800 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2">
+          <h5 class="font-bold uppercase text-gray-600">Gas Week Totals</h5>
+       </div>
+       <div class="p-5">
+          <canvas id="chartjs-8" class="chartjs" width="undefined" height="undefined"></canvas>
+          <script>
+                 new Chart(document.getElementById("chartjs-8"), {
+                     "type": "bar",
+                     "data": {
+                         //"labels": ["January", "February", "March", "April"],
+                         "labels": [<%= raw(labels(@gas_totals)) %>],
+                         "datasets": [{
+                             "label": "m3",
+                             "data": [<%= raw(values(@gas_totals)) %>],
+                             "borderColor": "rgb(206, 18, 18)",
+                             "backgroundColor": "rgba(206, 18, 18, 0.2)"
+                         }]
+                     }
+                 });
+          </script>
+       </div>
+    </div>
+ </div>
+ <!--/Graph Card-->
+
     <div class="w-full md:w-1/3 xl:w-1/3 p-3">
        <!--Graph Card-->
        <div class="bg-white border-transparent rounded-lg shadow-lg">
@@ -134,9 +164,7 @@ defmodule HomeDashWeb.StatusLive do
           <div class="p-5">
              <canvas id="chartjs-7" class="chartjs" width="undefined" height="undefined"></canvas>
              <script>
-                //foobar
                     new Chart(document.getElementById("chartjs-7"), {
-
                         "type": "bar",
                         "data": {
                             //"labels": ["January", "February", "March", "April"],
@@ -154,35 +182,7 @@ defmodule HomeDashWeb.StatusLive do
        </div>
     </div>
     <!--/Graph Card-->
-    <div class="w-full md:w-1/3 xl:w-1/3 p-3">
-       <!--Graph Card-->
-       <div class="bg-white border-transparent rounded-lg shadow-lg">
-          <div class="bg-gray-400 uppercase text-gray-800 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2">
-             <h5 class="font-bold uppercase text-gray-600">Gas Week Totals</h5>
-          </div>
-          <div class="p-5">
-             <canvas id="chartjs-8" class="chartjs" width="undefined" height="undefined"></canvas>
-             <script>
-                //foobar
-                    new Chart(document.getElementById("chartjs-8"), {
 
-                        "type": "bar",
-                        "data": {
-                            //"labels": ["January", "February", "March", "April"],
-                            "labels": [<%= raw(labels(@gas_totals)) %>],
-                            "datasets": [{
-                                "label": "m3",
-                                "data": [<%= raw(values(@gas_totals)) %>],
-                                "borderColor": "rgb(206, 18, 18)",
-                                "backgroundColor": "rgba(206, 18, 18, 0.2)"
-                            }]
-                        }
-                    });
-             </script>
-          </div>
-       </div>
-    </div>
-    <!--/Graph Card-->
     <div class="w-full md:w-1/3 xl:w-1/3 p-3">
        <!--Graph Card-->
        <div class="bg-white border-transparent rounded-lg shadow-lg">
@@ -192,9 +192,7 @@ defmodule HomeDashWeb.StatusLive do
           <div class="p-5">
              <canvas id="chartjs-9" class="chartjs" width="undefined" height="undefined"></canvas>
              <script>
-                //foobar
                     new Chart(document.getElementById("chartjs-9"), {
-
                         "type": "bar",
                         "data": {
                             //"labels": ["January", "February", "March", "April"],

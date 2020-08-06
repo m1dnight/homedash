@@ -14,8 +14,6 @@ defmodule HomeDashWeb.PageView do
 
   # Day usage charts.
   def labels(dataset) do
-    IO.inspect(dataset)
-
     dataset
     |> Enum.map(fn {date, _value} ->
       day = String.pad_leading("#{date.day}", 2, "0")
