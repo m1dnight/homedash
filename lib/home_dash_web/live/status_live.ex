@@ -261,8 +261,6 @@ defmodule HomeDashWeb.StatusLive do
 
   # Day usage charts.
   def labels(dataset) do
-    IO.inspect(dataset)
-
     dataset
     |> Enum.map(fn {date, _value} ->
       day = String.pad_leading("#{date.day}", 2, "0")
@@ -274,6 +272,7 @@ defmodule HomeDashWeb.StatusLive do
 
   def values(dataset) do
     dataset
+    |> Enum.map(fn {date, value} -> {date, show_measurement(value, 2)} end)
     |> Enum.map(fn {_date, value} -> "#{value}" end)
     |> Enum.join(", ")
   end
