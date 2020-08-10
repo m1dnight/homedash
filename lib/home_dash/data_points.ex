@@ -40,23 +40,6 @@ defmodule HomeDash.DataPoints do
   datapoint("gas", GasDataPoint)
   datapoint("solar", SolarDataPoint)
 
-
-  def test() do
-    today = list_electricity_datapoints_since(start_of_day())
-
-    grouped =
-      today
-      |> Enum.group_by(fn measurement ->
-        measurement.read_on |> truncate_datetime_hour()
-      end)
-      |> Enum.map(fn {hour, values} ->
-        # First reading
-        first = values |> Enum.sort_by(fn reading -> reading.read_on end) |> List.first()
-        last = values |> Enum.sort_by(fn reading -> reading.read_on end) |> List.last()
-        consumption = last.value - first.value
-        {hour, consumption}
-      end)
-  end
   ##############################################################################
   # Helpers ####################################################################
   ##############################################################################

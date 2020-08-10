@@ -35,40 +35,40 @@ alias HomeDash.DataPoints
 #   end)
 # end)
 
-0..23
-|> Enum.map(fn hour ->
-  date =
-    DateTime.now!("Etc/UTC")
-    |> Map.put(:hour, hour)
-    |> Map.put(:minute, 0)
+# 0..23
+# |> Enum.map(fn hour ->
+#   date =
+#     DateTime.now!("Etc/UTC")
+#     |> Map.put(:hour, hour)
+#     |> Map.put(:minute, 0)
 
-  IO.puts(date)
+#   IO.puts(date)
 
-  DataPoints.create_electricity_data_point(%{value: hour * 10, read_on: date})
-  DataPoints.create_gas_data_point(%{value: hour * 10, read_on: date})
-  DataPoints.create_solar_data_point(%{value: hour * 10, read_on: date})
-end)
+#   DataPoints.create_electricity_data_point(%{value: hour * 10, read_on: date})
+#   DataPoints.create_gas_data_point(%{value: hour * 10, read_on: date})
+#   DataPoints.create_solar_data_point(%{value: hour * 10, read_on: date})
+# end)
 
-0..23
-|> Enum.map(fn hour ->
-  date =
-    DateTime.now!("Etc/UTC")
-    |> Map.put(:hour, hour)
-    |> Map.put(:minute, 30)
+# 0..23
+# |> Enum.map(fn hour ->
+#   date =
+#     DateTime.now!("Etc/UTC")
+#     |> Map.put(:hour, hour)
+#     |> Map.put(:minute, 30)
 
-  DataPoints.create_electricity_data_point(%{value: hour * 10 + 2, read_on: date})
-  DataPoints.create_gas_data_point(%{value: hour * 10 + 2, read_on: date})
-  DataPoints.create_solar_data_point(%{value: hour * 10 + 2, read_on: date})
-end)
+#   DataPoints.create_electricity_data_point(%{value: hour * 10 + 2, read_on: date})
+#   DataPoints.create_gas_data_point(%{value: hour * 10 + 2, read_on: date})
+#   DataPoints.create_solar_data_point(%{value: hour * 10 + 2, read_on: date})
+# end)
 
-0..23
-|> Enum.map(fn hour ->
-  date =
-    DateTime.now!("Etc/UTC")
-    |> Map.put(:hour, hour)
-    |> Map.put(:minute, 45)
+# 0..23
+# |> Enum.map(fn hour ->
+#   date =
+#     DateTime.now!("Etc/UTC")
+#     |> Map.put(:hour, hour)
+#     |> Map.put(:minute, 45)
 
-  DataPoints.create_electricity_data_point(%{value: hour * 10 + 5, read_on: date})
-  DataPoints.create_gas_data_point(%{value: hour * 10 + 5, read_on: date})
-  DataPoints.create_solar_data_point(%{value: hour * 10 + 5, read_on: date})
-end)
+#   DataPoints.create_electricity_data_point(%{value: hour * 10 + 5, read_on: date})
+#   DataPoints.create_gas_data_point(%{value: hour * 10 + 5, read_on: date})
+#   DataPoints.create_solar_data_point(%{value: hour * 10 + 5, read_on: date})
+# end)
