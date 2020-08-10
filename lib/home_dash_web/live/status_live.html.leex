@@ -14,11 +14,11 @@
 				</div>
 				<div class="flex-1 text-right md:text-center">
 					<h2 class="font-bold text-3xl">Today</h2>
-					<h3 class="font-bold text-3xl"> <%= @gas_today |> show_measurement(3) %> m<sup>3</sup></h3>
+					<h3 class="font-bold text-3xl"> <%= @gas_today |> show_measurement(1) %> m<sup>3</sup></h3>
 				</div>
 				<div class="flex-1 text-right md:text-center">
 					<h2 class="font-bold text-3xl">Total</h2>
-					<h3 class="font-bold text-3xl"> <%= @gas.value |> show_measurement(3) %> m<sup>3</sup></h3>
+					<h3 class="font-bold text-3xl"> <%= @gas.value |> show_measurement(1) %> m<sup>3</sup></h3>
 				</div>
 			</div>
 		</div>
@@ -36,11 +36,11 @@
 				</div>
 				<div class="flex-1 text-right md:text-center">
 					<h2 class="font-bold text-3xl">Today</h2>
-					<h3 class="font-bold text-3xl"> <%= @electricity_today  |> show_measurement(3)%> kW</h3>
+					<h3 class="font-bold text-3xl"> <%= @electricity_today  |> show_measurement(1)%> kW</h3>
 				</div>
 				<div class="flex-1 text-right md:text-center">
 					<h2 class="font-bold text-3xl">Total</h2>
-					<h3 class="font-bold text-3xl"> <%= @electricity.value  |> show_measurement(3)%> kW</h3>
+					<h3 class="font-bold text-3xl"> <%= @electricity.value  |> show_measurement(1)%> kW</h3>
 				</div>
 			</div>
 		</div>
@@ -58,11 +58,11 @@
 				</div>
 				<div class="flex-1 text-right md:text-center">
 					<h2 class="font-bold text-3xl">Today</h2>
-					<h3 class="font-bold text-3xl"> <%= @solar.value  |> show_measurement(3)%> kW</h3>
+					<h3 class="font-bold text-3xl"> <%= @solar_today  |> show_measurement(1)%> kW</h3>
 				</div>
 				<div class="flex-1 text-right md:text-center">
 					<h2 class="font-bold text-3xl">Total</h2>
-					<h3 class="font-bold text-3xl"> <%= @solar_today  |> show_measurement(3)%> kW</h3>
+					<h3 class="font-bold text-3xl"> <%= @solar.value  |> show_measurement(1)%> kW</h3>
 				</div>
 			</div>
 		</div>
