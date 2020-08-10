@@ -1,6 +1,5 @@
 body {
   @apply antialiased relative bg-cool-gray-200 font-sans;
-  overflow:hidden;
 }
 
 header {
