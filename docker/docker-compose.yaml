@@ -17,6 +17,7 @@ services:
       - DATABASE_PASSWORD=${DATABASE_PASSWORD}
       - DATABASE_HOST=db
       - PORT=${PORT}
+      - API_TOKEN=${API_TOKEN}
     ports:
       - ${PORT}:${PORT}
     networks:
