@@ -15,15 +15,31 @@
   </head>
 
   <body class='flex flex-col h-full'>
-        <header class='w-full text-center border-b border-grey p-0'>
-           <h1>Groenenbrielstraat</h1>
+        <!-- HEADER -->
+        <header class='w-full text-center border-b border-grey p-0 m-0'>
+           <h1 class="m-2">Groenenbrielstraat</h1>
         </header>
+        <!-- / HEADER -->
+
+        <!-- CONTENT -->
         <div id='content' class='flex-1 p-0 w-full'>
             <%= @inner_content %>
         </div>
-        <footer class='w-full text-center border-t border-grey p-4'>
-            Built by Christophe De Troyer with Elixir/Phoenix
+        <!-- / CONTENT -->
+
+        <!-- FOOTER -->
+        <footer class='w-full flex text-center border-t border-grey p-4 items-center'>
+          <div class="flex-1 w-1/5">
+                <p class="text-6xl"><i class="fas fa-tachometer-alt"></i></p>
+          </div>
+          <div class="flex-1 w-1/5">
+                <p class="text-6xl"><i class="fas fa-chart-line"></i></p>
+          </div>
+          <div class="flex-1 w-1/5">
+                <p class="text-6xl"><i class="fas fa-info"></i></p>
+          </div>
         </footer>
+        <!-- / FOOTER -->
   </body>
 
 </html>
