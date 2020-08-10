@@ -2,7 +2,6 @@ defmodule HomeDashWeb.Token do
   import Plug.Conn
 
   def init(opts) do
-    IO.inspect(opts)
     opts
   end
 
@@ -22,7 +21,6 @@ defmodule HomeDashWeb.Token do
   defp valid_token?(token) do
     global_token = Application.fetch_env!(:home_dash, :api_token)
 
-    IO.inspect "Expected token: #{inspect global_token}"
     case token do
       nil ->
         false
