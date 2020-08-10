@@ -12,11 +12,11 @@
 
 alias HomeDash.DataPoints
 
-now = DateTime.from_unix!(0)
+# now = DateTime.from_unix!(0)
 
-DataPoints.create_electricity_data_point(%{value: 0, read_on: now})
-DataPoints.create_gas_data_point(%{value: 0, read_on: now})
-DataPoints.create_solar_data_point(%{value: 0, read_on: now})
+# DataPoints.create_electricity_data_point(%{value: 0, read_on: now})
+# DataPoints.create_gas_data_point(%{value: 0, read_on: now})
+# DataPoints.create_solar_data_point(%{value: 0, read_on: now})
 
 # 0..10
 # |> Enum.flat_map(fn day ->
@@ -34,3 +34,41 @@ DataPoints.create_solar_data_point(%{value: 0, read_on: now})
 #     DataPoints.create_solar_data_point(%{value: 2000 + day * 100 + hour * 1000, read_on: date})
 #   end)
 # end)
+
+0..23
+|> Enum.map(fn hour ->
+  date =
+    DateTime.now!("Etc/UTC")
+    |> Map.put(:hour, hour)
+    |> Map.put(:minute, 0)
+
+  IO.puts(date)
+
+  DataPoints.create_electricity_data_point(%{value: hour * 10, read_on: date})
+  DataPoints.create_gas_data_point(%{value: hour * 10, read_on: date})
+  DataPoints.create_solar_data_point(%{value: hour * 10, read_on: date})
+end)
+
+0..23
+|> Enum.map(fn hour ->
+  date =
+    DateTime.now!("Etc/UTC")
+    |> Map.put(:hour, hour)
+    |> Map.put(:minute, 30)
+
+  DataPoints.create_electricity_data_point(%{value: hour * 10 + 2, read_on: date})
+  DataPoints.create_gas_data_point(%{value: hour * 10 + 2, read_on: date})
+  DataPoints.create_solar_data_point(%{value: hour * 10 + 2, read_on: date})
+end)
+
+0..23
+|> Enum.map(fn hour ->
+  date =
+    DateTime.now!("Etc/UTC")
+    |> Map.put(:hour, hour)
+    |> Map.put(:minute, 45)
+
+  DataPoints.create_electricity_data_point(%{value: hour * 10 + 5, read_on: date})
+  DataPoints.create_gas_data_point(%{value: hour * 10 + 5, read_on: date})
+  DataPoints.create_solar_data_point(%{value: hour * 10 + 5, read_on: date})
+end)

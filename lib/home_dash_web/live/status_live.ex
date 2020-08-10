@@ -27,7 +27,10 @@ defmodule HomeDashWeb.StatusLive do
       electricity_today: etd,
       electricity_totals: ets,
       gas_totals: gts,
-      solar_totals: sts
+      solar_totals: sts,
+      electricity_hourly: eh,
+      gas_hourly: gh,
+      solar_hourly: sh
     } = HomeDash.DataPoints.current()
 
     socket
@@ -40,7 +43,10 @@ defmodule HomeDashWeb.StatusLive do
       gas_today: gtd,
       electricity_totals: ets,
       gas_totals: gts,
-      solar_totals: sts
+      solar_totals: sts,
+      electricity_hourly: eh,
+      gas_hourly: gh,
+      solar_hourly: sh
     )
   end
 
@@ -66,6 +72,15 @@ defmodule HomeDashWeb.StatusLive do
     |> Enum.join(", ")
   end
 
+  #Hourly charts
+  def labels_hourly(dataset) do
+    dataset
+    |> Enum.map(fn {date, _value} ->
+      hour = String.pad_leading("#{date.hour}", 2, "0")
+      ~s("#{hour}:00")
+    end)
+    |> Enum.join(", ")
+  end
   def values(dataset) do
     dataset
     |> Enum.map(fn {date, value} -> {date, show_measurement(value, 2)} end)

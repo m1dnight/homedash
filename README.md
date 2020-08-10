@@ -13,11 +13,15 @@ Home Dash uses a `config/releases.exs` file, so most of the variables need to be
 | `LIVE_VIEW_SALT`    | The salt to encrypt the LiveView sockets. Generate with `mix phx.gen.secret` |
 | `SECRET_KEY_BASE`   | Secret signging and encryption salt. Generate with `mix phx.gen.secret`.     |
 | `PORT`              | The port on which the application will listen.                               |
+| `API_TOKEN`         | The token which is required to post data to the endpoint.                    |
 
 
 Then build the Docker image by issueing `docker-compose build`. After that, run the application with `docker-compose up -d` and you should be able to access the application.
 
+# Todo 
 
+ * Now when we fetch an interval and there happens to be a single measurement we say that there was no consumption. But acutally we should take the measurement just outside ofthe interval as the base value.
+ 
 # References 
 
 Here are some links I used to make this app. No particular order.

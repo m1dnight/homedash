@@ -127,16 +127,45 @@ defmodule HomeDash.DataPoints.Macros do
       end
 
     # ---------------------------------------------------------------------------
+    # total_*_interval
+    function_name = "total_#{name}_hourly" |> String.to_atom()
+
+    total_hourly =
+      quote do
+        def unquote(function_name)() do
+          today = unquote(String.to_atom("list_#{name}_datapoints_since"))(start_of_day())
+
+          today
+          |> Enum.group_by(fn measurement ->
+            measurement.read_on |> truncate_datetime_hour()
+          end)
+          |> Enum.map(fn {hour, values} ->
+            case values do
+              [measurement] ->
+                {hour, 0.0}
+
+              values ->
+                first = values |> Enum.sort_by(fn reading -> reading.read_on end) |> List.first()
+                last = values |> Enum.sort_by(fn reading -> reading.read_on end) |> List.last()
+                consumption = last.value - first.value
+                {hour, consumption}
+            end
+          end)
+        end
+      end
+
+    # ---------------------------------------------------------------------------
     # list_*_datapoints_since
     function_name = "list_#{name}_datapoints_since" |> String.to_atom()
 
     list_datapoints_since =
       quote do
         def unquote(function_name)(start) do
-          unquote(String.to_atom("list_#{name}_datapoints_between"))(
-            start,
-            DateTime.now!("Etc/UTC")
-          )
+          query =
+            from dp in unquote(struct_name),
+              where: dp.read_on > ^start
+
+          Repo.all(query)
         end
       end
 
@@ -206,6 +235,7 @@ defmodule HomeDash.DataPoints.Macros do
       unquote(delete_data_point)
       unquote(change_data_point)
       unquote(total_usage_in_range)
+      unquote(total_hourly)
     end
   end
 
