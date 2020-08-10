@@ -30,6 +30,8 @@ config :home_dash, HomeDashWeb.Endpoint,
     ]
   ]
 
+config :home_dash, api_token: "devtoken"
+
 # ## SSL Support
 #
 # In order to use HTTPS in development, a self-signed

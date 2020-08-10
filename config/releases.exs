@@ -48,3 +48,16 @@ config :home_dash, HomeDashWeb.Endpoint,
   ],
   live_view: [signing_salt: live_view_salt],
   server: true
+
+################################################################################
+# Token for API ################################################################
+################################################################################
+
+token =
+  System.get_env("API_TOKEN") ||
+    raise """
+    environment variable API_TOKEN is missing.
+    You can generate one by calling: mix phx.gen.secret
+    """
+
+config :home_dash, api_token: token

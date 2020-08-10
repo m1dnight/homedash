@@ -13,6 +13,7 @@ defmodule HomeDashWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug HomeDashWeb.Token
   end
 
   scope "/api", HomeDashWeb do
