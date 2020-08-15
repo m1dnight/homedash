@@ -122,7 +122,7 @@
                new Chart(document.getElementById("chartjs-11"), {
                	"type": "line",
                	"data": {
-               		"labels": [<%= raw(labels_hourly(@current.electricity_quarterly)) %>],
+               		"labels": [<%= raw(labels_quarterly(@current.electricity_quarterly)) %>],
                "datasets": [{
                	"label": "kWh",
                	"data": [<%= raw(values(@current.electricity_quarterly)) %>],
@@ -140,7 +140,7 @@
 
 
 <!-- ####################################################################### -->
-<!-- Row with quarterly Electrity ########################################## -->
+<!-- Row with quarterly Injection ########################################## -->
 <div class="flex flex-wrap" phx-update="ignore">
    <!--/Graph Card Solar -->
    <!--/Graph Card-->
@@ -148,7 +148,7 @@
       <!--Graph Card-->
       <div class="bg-white border-transparent rounded-lg shadow-lg">
          <div class="bg-green-300 uppercase text-gray-800 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2 md:text-center">
-            <h5 class="font-bold uppercase text-gray-600">Solar Hourly Injection</h5>
+            <h5 class="font-bold uppercase text-gray-600">Solar Quarterly Injection</h5>
          </div>
          <div class="p-5">
             <canvas id="chartjs-12" class="chartjs" width="undefined" height="50"></canvas>
@@ -156,7 +156,7 @@
                new Chart(document.getElementById("chartjs-12"), {
                	"type": "line",
                	"data": {
-               		"labels": [<%= raw(labels_hourly(@current.solar_quarterly)) %>],
+               		"labels": [<%= raw(labels_quarterly(@current.solar_quarterly)) %>],
                "datasets": [{
                	"label": "kWh",
                	"data": [<%= raw(values(@current.solar_quarterly)) %>],
@@ -194,7 +194,7 @@
                			"label": "m3",
                			"data": [<%= raw(values(@current.gas_totals)) %>],
                			"borderColor": "rgb(206, 18, 18)",
-               			"backgroundColor": "rgba(206, 18, 18, 0.2)"
+               			"backgroundColor": "rgba(206, 18, 18, 1)"
                		}]
                    },
                	"options": {
@@ -228,7 +228,7 @@
                	"label": "kWh",
                	"data": [<%= raw(values(@current.electricity_totals)) %>],
                "borderColor": "rgb(250, 202, 21)",
-               	"backgroundColor": "rgba(250, 202, 21, 0.2)"
+               	"backgroundColor": "rgba(250, 202, 21, 1.0)"
                        }]
                    }
                });
@@ -255,7 +255,7 @@
                	"label": "kWh",
                	"data": [<%= raw(values(@current.solar_totals)) %>],
                "borderColor": "rgb(132, 225, 188)",
-               	"backgroundColor": "rgba(132, 225, 188, 0.2)"
+               	"backgroundColor": "rgba(132, 225, 188, 1.0)"
                        }]
                    }
                });
