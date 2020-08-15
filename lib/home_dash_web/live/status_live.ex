@@ -18,36 +18,8 @@ defmodule HomeDashWeb.StatusLive do
   end
 
   defp assign_stats(socket) do
-    %{
-      gas: g,
-      electricity: e,
-      solar: s,
-      solar_today: std,
-      gas_today: gtd,
-      electricity_today: etd,
-      electricity_totals: ets,
-      gas_totals: gts,
-      solar_totals: sts,
-      electricity_hourly: eh,
-      gas_hourly: gh,
-      solar_hourly: sh
-    } = HomeDash.DataPoints.current()
-
     socket
-    |> assign(
-      electricity: e,
-      gas: g,
-      solar: s,
-      solar_today: std,
-      electricity_today: etd,
-      gas_today: gtd,
-      electricity_totals: ets,
-      gas_totals: gts,
-      solar_totals: sts,
-      electricity_hourly: eh,
-      gas_hourly: gh,
-      solar_hourly: sh
-    )
+    |> assign(current: HomeDash.DataPoints.current())
   end
 
   def format_datetime(dt) do
@@ -72,7 +44,7 @@ defmodule HomeDashWeb.StatusLive do
     |> Enum.join(", ")
   end
 
-  #Hourly charts
+  # Hourly charts
   def labels_hourly(dataset) do
     dataset
     |> Enum.map(fn {date, _value} ->
@@ -81,6 +53,17 @@ defmodule HomeDashWeb.StatusLive do
     end)
     |> Enum.join(", ")
   end
+
+  # Quarterly charts
+  def labels_quarterly(dataset) do
+    dataset
+    |> Enum.map(fn {date, _value} ->
+      hour = String.pad_leading("#{date.hour}", 2, "0")
+      ~s("#{hour}:#{date.minute}")
+    end)
+    |> Enum.join(", ")
+  end
+
   def values(dataset) do
     dataset
     |> Enum.map(fn {date, value} -> {date, show_measurement(value, 2)} end)

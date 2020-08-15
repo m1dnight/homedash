@@ -1,249 +1,268 @@
+
+
 <script>
-	Chart.defaults.global.defaultFontColor = 'black';
+   Chart.defaults.global.defaultFontColor = 'black';
 </script>
-<!-- Row -->
+<!-- ####################################################################### -->
+<!-- Row with Current measurements ######################################### -->
 <div class="flex flex-wrap">
-	<!--Metric Card Gas-->
-	<div class="w-full md:w-1/3 xl:w-1/3 p-3">
-		<div class="bg-red-500 border rounded shadow p-6">
-			<div class="flex flex-row items-center">
-				<div class="flex-shrink pr-4">
-					<div class="rounded p-3 bg-red-500">
-						<i class="fa fa-burn fa-2x fa-fw fa-inverse"></i>
-					</div>
-				</div>
-				<div class="flex-1 text-right md:text-center">
-					<h2 class="font-bold text-3xl">Today</h2>
-					<h3 class="text-xl"> <%= @gas_today |> show_measurement(1) %> m<sup>3</sup></h3>
-				</div>
-				<div class="flex-1 text-right md:text-center">
-					<h2 class="font-bold text-3xl">Total</h2>
-					<h3 class="text-xl"> <%= @gas.value |> show_measurement(1) %> m<sup>3</sup></h3>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!--/ Metric Card Gas-->
-	<!-- ------------------------------------------------------------------- -->
-	<!--Metric Card Electricity -->
-	<div class="w-full md:w-1/3 xl:w-1/3 p-3">
-		<div class="bg-yellow-300 border rounded shadow p-6">
-			<div class="flex flex-row items-center">
-				<div class="flex-shrink pr-4">
-					<div class="rounded p-3 bg-yellow-300">
-						<i class="fa fa-bolt fa-2x fa-fw fa-inverse"></i>
-					</div>
-				</div>
-				<div class="flex-1 text-right md:text-center">
-					<h2 class="font-bold text-3xl">Today</h2>
-					<h3 class="text-xl"> <%= @electricity_today  |> show_measurement(1)%> kW</h3>
-				</div>
-				<div class="flex-1 text-right md:text-center">
-					<h2 class="font-bold text-3xl">Total</h2>
-					<h3 class="text-xl"> <%= @electricity.value  |> show_measurement(1)%> kW</h3>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!--/ Metric Card Electricity -->
-	<!-- ------------------------------------------------------------------- -->
-	<!--Metric Card Solar -->
-	<div class="w-full md:w-1/3 xl:w-1/3 p-3">
-		<div class="bg-green-300 border rounded-lg shadow-lg p-6">
-			<div class="flex flex-row items-center">
-				<div class="flex-shrink pr-4">
-					<div class="rounded p-3 bg-green-300">
-						<i class="fa fa-sun fa-2x fa-fw fa-inverse"></i>
-					</div>
-				</div>
-				<div class="flex-1 text-right md:text-center">
-					<h2 class="font-bold text-3xl">Today</h2>
-					<h3 class="text-xl"> <%= @solar_today  |> show_measurement(1)%> kW</h3>
-				</div>
-				<div class="flex-1 text-right md:text-center">
-					<h2 class="font-bold text-3xl">Total</h2>
-					<h3 class="text-xl"> <%= @solar.value  |> show_measurement(1)%> kW</h3>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!--/ Metric Card Solar -->
+   <!--Metric Card Gas-->
+   <div class="w-full md:w-1/3 xl:w-1/3 p-3">
+      <div class="bg-red-500 border rounded shadow p-6">
+         <div class="flex flex-row items-center">
+            <div class="flex-shrink pr-4">
+               <div class="rounded p-3 bg-red-500">
+                  <i class="fa fa-burn fa-2x fa-fw fa-inverse"></i>
+               </div>
+            </div>
+            <div class="flex-1 text-right md:text-center">
+               <h2 class="font-bold text-3xl">Today</h2>
+               <h3 class="text-xl"> <%= @current.gas_today |> show_measurement(1) %> m<sup>3</sup></h3>
+            </div>
+            <div class="flex-1 text-right md:text-center">
+               <h2 class="font-bold text-3xl">Total</h2>
+               <h3 class="text-xl"> <%= @current.gas.value |> show_measurement(1) %> m<sup>3</sup></h3>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!--/ Metric Card Gas-->
+   <!-- ------------------------------------------------------------------- -->
+   <!--Metric Card Electricity -->
+   <div class="w-full md:w-1/3 xl:w-1/3 p-3">
+      <div class="bg-yellow-300 border rounded shadow p-6">
+         <div class="flex flex-row items-center">
+            <div class="flex-shrink pr-4">
+               <div class="rounded p-3 bg-yellow-300">
+                  <i class="fa fa-bolt fa-2x fa-fw fa-inverse"></i>
+               </div>
+            </div>
+            <div class="flex-1 text-right md:text-center">
+               <h2 class="font-bold text-3xl">Today</h2>
+               <h3 class="text-xl"> <%= @current.electricity_today  |> show_measurement(1)%> kW</h3>
+            </div>
+            <div class="flex-1 text-right md:text-center">
+               <h2 class="font-bold text-3xl">Total</h2>
+               <h3 class="text-xl"> <%= @current.electricity.value  |> show_measurement(1)%> kW</h3>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!--/ Metric Card Electricity -->
+   <!-- ------------------------------------------------------------------- -->
+   <!--Metric Card Solar -->
+   <div class="w-full md:w-1/3 xl:w-1/3 p-3">
+      <div class="bg-green-300 border rounded-lg shadow-lg p-6">
+         <div class="flex flex-row items-center">
+            <div class="flex-shrink pr-4">
+               <div class="rounded p-3 bg-green-300">
+                  <i class="fa fa-sun fa-2x fa-fw fa-inverse"></i>
+               </div>
+            </div>
+            <div class="flex-1 text-right md:text-center">
+               <h2 class="font-bold text-3xl">Today</h2>
+               <h3 class="text-xl"> <%= @current.solar_today  |> show_measurement(1)%> kW</h3>
+            </div>
+            <div class="flex-1 text-right md:text-center">
+               <h2 class="font-bold text-3xl">Total</h2>
+               <h3 class="text-xl"> <%= @current.solar.value  |> show_measurement(1)%> kW</h3>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!--/ Metric Card Solar -->
 </div>
 <!-- /Row -->
 
 <!-- ####################################################################### -->
+<!-- Row with quarterly Gas ################################################ -->
+<div class="flex flex-wrap" phx-update="ignore">
+   <!--/Graph Card Gas -->
+   <div class="w-full md:w-1/1 xl:w-1/1 p-3">
+      <!--Graph Card-->
+      <div class="bg-white border-transparent rounded-lg shadow-lg">
+         <div class="bg-red-500 uppercase text-gray-800 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2 md:text-center">
+            <h5 class="font-bold uppercase text-gray-600">Gas Quarterly Consumption</h5>
+         </div>
+         <div class="p-5">
+            <canvas id="chartjs-10" class="chartjs" width="undefined" height="50"></canvas>
+            <script>
+               new Chart(document.getElementById("chartjs-10"), {
+               	"type": "line",
+               	"data": {
+               		"labels": [<%= raw(labels_quarterly(@current.gas_quarterly)) %>],
+               "datasets": [{
+               	"label": "m3",
+               	"data": [<%= raw(values(@current.gas_quarterly)) %>],
+               			"borderColor": "rgb(206, 18, 18)",
+               			"backgroundColor": "rgba(206, 18, 18, 0.2)"
+                       }]
+                   }
+               });
+            </script>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- Row -->
 
+
+<!-- ####################################################################### -->
+<!-- Row with quarterly Electrity ########################################## -->
+<div class="flex flex-wrap" phx-update="ignore">
+   <div class="w-full md:w-1/1 xl:w-1/1 p-3">
+      <!--Graph Card-->
+      <div class="bg-white border-transparent rounded-lg shadow-lg">
+         <div class="bg-yellow-300 uppercase text-gray-800 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2 md:text-center">
+            <h5 class="font-bold uppercase text-gray-600">Electricity Quarterly Consumption</h5>
+         </div>
+         <div class="p-5">
+            <canvas id="chartjs-11" class="chartjs" width="undefined" height="50"></canvas>
+            <script>
+               new Chart(document.getElementById("chartjs-11"), {
+               	"type": "line",
+               	"data": {
+               		"labels": [<%= raw(labels_hourly(@current.electricity_quarterly)) %>],
+               "datasets": [{
+               	"label": "kWh",
+               	"data": [<%= raw(values(@current.electricity_quarterly)) %>],
+               "borderColor": "rgb(250, 202, 21)",
+               	"backgroundColor": "rgba(250, 202, 21, 0.2)"
+                       }]
+                   }
+               });
+            </script>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- Row -->
+
+
+<!-- ####################################################################### -->
+<!-- Row with quarterly Electrity ########################################## -->
+<div class="flex flex-wrap" phx-update="ignore">
+   <!--/Graph Card Solar -->
+   <!--/Graph Card-->
+   <div class="w-full md:w-1/1 xl:w-1/1 p-3">
+      <!--Graph Card-->
+      <div class="bg-white border-transparent rounded-lg shadow-lg">
+         <div class="bg-green-300 uppercase text-gray-800 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2 md:text-center">
+            <h5 class="font-bold uppercase text-gray-600">Solar Hourly Injection</h5>
+         </div>
+         <div class="p-5">
+            <canvas id="chartjs-12" class="chartjs" width="undefined" height="50"></canvas>
+            <script>
+               new Chart(document.getElementById("chartjs-12"), {
+               	"type": "line",
+               	"data": {
+               		"labels": [<%= raw(labels_hourly(@current.solar_quarterly)) %>],
+               "datasets": [{
+               	"label": "kWh",
+               	"data": [<%= raw(values(@current.solar_quarterly)) %>],
+               "borderColor": "rgb(132, 225, 188)",
+               	"backgroundColor": "rgba(132, 225, 188, 0.2)"
+                       }]
+                   }
+               });
+            </script>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+<!-- ####################################################################### -->
+<!-- Row with Hourly ####################################################### -->
 <!-- Row -->
 <div class="flex flex-wrap" phx-update="ignore">
-	<!--/Graph Card Gas -->
-	<div class="w-full md:w-1/3 xl:w-1/3 p-3">
-		<!--Graph Card-->
-		<div class="bg-white border-transparent rounded-lg shadow-lg">
-			<div class="bg-red-500 uppercase text-gray-800 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2 md:text-center">
-				<h5 class="font-bold uppercase text-gray-600">Gas Hourly Consumption</h5>
-			</div>
-			<div class="p-5">
-				<canvas id="chartjs-10" class="chartjs" width="undefined" height="undefined"></canvas>
-				<script>
-					new Chart(document.getElementById("chartjs-10"), {
-						"type": "bar",
-						"data": {
-							"labels": [<%= raw(labels_hourly(@gas_hourly)) %>],
-					"datasets": [{
-						"label": "m3",
-						"data": [<%= raw(values(@gas_hourly)) %>],
-								"borderColor": "rgb(206, 18, 18)",
-								"backgroundColor": "rgba(206, 18, 18, 0.2)"
-					        }]
-					    }
-					});
-				</script>
-			</div>
-		</div>
-	</div>
-	<!--/Graph Card Elec -->
-		<!--/Graph Card-->
-	<div class="w-full md:w-1/3 xl:w-1/3 p-3">
-		<!--Graph Card-->
-		<div class="bg-white border-transparent rounded-lg shadow-lg">
-			<div class="bg-yellow-300 uppercase text-gray-800 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2 md:text-center">
-				<h5 class="font-bold uppercase text-gray-600">Electricity Hourly Consumption</h5>
-			</div>
-			<div class="p-5">
-				<canvas id="chartjs-11" class="chartjs" width="undefined" height="undefined"></canvas>
-				<script>
-					new Chart(document.getElementById("chartjs-11"), {
-						"type": "bar",
-						"data": {
-							"labels": [<%= raw(labels_hourly(@electricity_hourly)) %>],
-					"datasets": [{
-						"label": "kWh",
-						"data": [<%= raw(values(@electricity_hourly)) %>],
-					"borderColor": "rgb(250, 202, 21)",
-						"backgroundColor": "rgba(250, 202, 21, 0.2)"
-					        }]
-					    }
-					});
-				</script>
-			</div>
-		</div>
-	</div>
-	<!--/Graph Card Solar -->
-		<!--/Graph Card-->
-	<div class="w-full md:w-1/3 xl:w-1/3 p-3">
-		<!--Graph Card-->
-		<div class="bg-white border-transparent rounded-lg shadow-lg">
-			<div class="bg-green-300 uppercase text-gray-800 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2 md:text-center">
-				<h5 class="font-bold uppercase text-gray-600">Solar Hourly Injection</h5>
-			</div>
-			<div class="p-5">
-				<canvas id="chartjs-12" class="chartjs" width="undefined" height="undefined"></canvas>
-				<script>
-					new Chart(document.getElementById("chartjs-12"), {
-						"type": "bar",
-						"data": {
-							"labels": [<%= raw(labels_hourly(@solar_hourly)) %>],
-					"datasets": [{
-						"label": "kWh",
-						"data": [<%= raw(values(@solar_hourly)) %>],
-					"borderColor": "rgb(132, 225, 188)",
-						"backgroundColor": "rgba(132, 225, 188, 0.2)"
-					        }]
-					    }
-					});
-				</script>
-			</div>
-		</div>
-	</div>
-
-	<!--/Graph Card Gas -->
-	<div class="w-full md:w-1/3 xl:w-1/3 p-3">
-		<!--Graph Card-->
-		<div class="bg-white border-transparent rounded-lg shadow-lg">
-			<div class="bg-red-500 uppercase text-gray-800 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2 md:text-center">
-				<h5 class="uppercase font-bold text-black">Gas Week Totals</h5>
-			</div>
-			<div class="p-5">
-				<canvas id="chartjs-8" class="chartjs" width="undefined" height="undefined"></canvas>
-				<script>
-
-					new Chart(document.getElementById("chartjs-8"), {
-						"type": "bar",
-						"data": {
-							"labels": [<%= raw(labels(@gas_totals)) %>],
-							"datasets": [{
-								"label": "m3",
-								"data": [<%= raw(values(@gas_totals)) %>],
-								"borderColor": "rgb(206, 18, 18)",
-								"backgroundColor": "rgba(206, 18, 18, 0.2)"
-							}]
-					    },
-						"options": {
-							legend: {
-								labels: {
-									fontColor: 'black'
-								}
-							}
-						}
-					});
-				</script>
-			</div>
-		</div>
-	</div>
-	<!--/Graph Card Elec -->
-	<div class="w-full md:w-1/3 xl:w-1/3 p-3">
-		<!--Graph Card-->
-		<div class="bg-white border-transparent rounded-lg shadow-lg">
-			<div class="bg-yellow-300 uppercase text-gray-800 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2 md:text-center">
-				<h5 class="font-bold uppercase text-gray-600">Electricity Week Totals</h5>
-			</div>
-			<div class="p-5">
-				<canvas id="chartjs-7" class="chartjs" width="undefined" height="undefined"></canvas>
-				<script>
-					new Chart(document.getElementById("chartjs-7"), {
-						"type": "bar",
-						"data": {
-							//"labels": ["January", "February", "March", "April"],
-							"labels": [<%= raw(labels(@electricity_totals)) %>],
-					"datasets": [{
-						"label": "kWh",
-						"data": [<%= raw(values(@electricity_totals)) %>],
-					"borderColor": "rgb(250, 202, 21)",
-						"backgroundColor": "rgba(250, 202, 21, 0.2)"
-					        }]
-					    }
-					});
-				</script>
-			</div>
-		</div>
-	</div>
-	<!--/Graph Card Solar -->
-	<div class="w-full md:w-1/3 xl:w-1/3 p-3">
-		<!--Graph Card-->
-		<div class="bg-white border-transparent rounded-lg shadow-lg">
-			<div class="bg-green-300 uppercase text-gray-800 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2 md:text-center">
-				<h5 class="font-bold uppercase text-gray-600">Solar Week Totals</h5>
-			</div>
-			<div class="p-5">
-				<canvas id="chartjs-9" class="chartjs" width="undefined" height="undefined"></canvas>
-				<script>
-					new Chart(document.getElementById("chartjs-9"), {
-						"type": "bar",
-						"data": {
-							//"labels": ["January", "February", "March", "April"],
-							"labels": [<%= raw(labels(@solar_totals)) %>],
-					"datasets": [{
-						"label": "kWh",
-						"data": [<%= raw(values(@solar_totals)) %>],
-					"borderColor": "rgb(132, 225, 188)",
-						"backgroundColor": "rgba(132, 225, 188, 0.2)"
-					        }]
-					    }
-					});
-				</script>
-			</div>
-		</div>
-	</div>
-	<!--/Graph Card-->
+   <!--/Graph Card Gas -->
+   <div class="w-full md:w-1/3 xl:w-1/3 p-3">
+      <!--Graph Card-->
+      <div class="bg-white border-transparent rounded-lg shadow-lg">
+         <div class="bg-red-500 uppercase text-gray-800 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2 md:text-center">
+            <h5 class="uppercase font-bold text-black">Gas Week Totals</h5>
+         </div>
+         <div class="p-5">
+            <canvas id="chartjs-8" class="chartjs" width="undefined" height="undefined"></canvas>
+            <script>
+               new Chart(document.getElementById("chartjs-8"), {
+               	"type": "bar",
+               	"data": {
+               		"labels": [<%= raw(labels(@current.gas_totals)) %>],
+               		"datasets": [{
+               			"label": "m3",
+               			"data": [<%= raw(values(@current.gas_totals)) %>],
+               			"borderColor": "rgb(206, 18, 18)",
+               			"backgroundColor": "rgba(206, 18, 18, 0.2)"
+               		}]
+                   },
+               	"options": {
+               		legend: {
+               			labels: {
+               				fontColor: 'black'
+               			}
+               		}
+               	}
+               });
+            </script>
+         </div>
+      </div>
+   </div>
+   <!--/Graph Card Elec -->
+   <div class="w-full md:w-1/3 xl:w-1/3 p-3">
+      <!--Graph Card-->
+      <div class="bg-white border-transparent rounded-lg shadow-lg">
+         <div class="bg-yellow-300 uppercase text-gray-800 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2 md:text-center">
+            <h5 class="font-bold uppercase text-gray-600">Electricity Week Totals</h5>
+         </div>
+         <div class="p-5">
+            <canvas id="chartjs-7" class="chartjs" width="undefined" height="undefined"></canvas>
+            <script>
+               new Chart(document.getElementById("chartjs-7"), {
+               	"type": "bar",
+               	"data": {
+               		//"labels": ["January", "February", "March", "April"],
+               		"labels": [<%= raw(labels(@current.electricity_totals)) %>],
+               "datasets": [{
+               	"label": "kWh",
+               	"data": [<%= raw(values(@current.electricity_totals)) %>],
+               "borderColor": "rgb(250, 202, 21)",
+               	"backgroundColor": "rgba(250, 202, 21, 0.2)"
+                       }]
+                   }
+               });
+            </script>
+         </div>
+      </div>
+   </div>
+   <!--/Graph Card Solar -->
+   <div class="w-full md:w-1/3 xl:w-1/3 p-3">
+      <!--Graph Card-->
+      <div class="bg-white border-transparent rounded-lg shadow-lg">
+         <div class="bg-green-300 uppercase text-gray-800 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2 md:text-center">
+            <h5 class="font-bold uppercase text-gray-600">Solar Week Totals</h5>
+         </div>
+         <div class="p-5">
+            <canvas id="chartjs-9" class="chartjs" width="undefined" height="undefined"></canvas>
+            <script>
+               new Chart(document.getElementById("chartjs-9"), {
+               	"type": "bar",
+               	"data": {
+               		//"labels": ["January", "February", "March", "April"],
+               		"labels": [<%= raw(labels(@current.solar_totals)) %>],
+               "datasets": [{
+               	"label": "kWh",
+               	"data": [<%= raw(values(@current.solar_totals)) %>],
+               "borderColor": "rgb(132, 225, 188)",
+               	"backgroundColor": "rgba(132, 225, 188, 0.2)"
+                       }]
+                   }
+               });
+            </script>
+         </div>
+      </div>
+   </div>
+   <!--/Graph Card-->
 </div>
 <!-- Row -->
