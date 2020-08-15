@@ -2,8 +2,8 @@ use Mix.Config
 
 # Configure your database
 config :home_dash, HomeDash.Repo,
-  username: "homedash",
-  password: "homedash",
+  username: "postgres",
+  password: "postgres",
   database: "homedashdb",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
