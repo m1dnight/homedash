@@ -127,7 +127,7 @@ defmodule HomeDash.DataPoints.Macros do
       end
 
     # ---------------------------------------------------------------------------
-    # total_*_interval
+    # total_*_hourly
     function_name = "total_#{name}_hourly" |> String.to_atom()
 
     total_hourly =
@@ -149,6 +149,34 @@ defmodule HomeDash.DataPoints.Macros do
                 last = values |> Enum.sort_by(fn reading -> reading.read_on end) |> List.last()
                 consumption = last.value - first.value
                 {hour, consumption}
+            end
+          end)
+        end
+      end
+
+    # ---------------------------------------------------------------------------
+    # total_*_quarterly
+    function_name = "total_#{name}_quarterly" |> String.to_atom()
+
+    total_quarterly =
+      quote do
+        def unquote(function_name)() do
+          today = unquote(String.to_atom("list_#{name}_datapoints_since"))(n_hours_ago(8))
+
+          today
+          |> Enum.group_by(fn measurement ->
+            measurement.read_on |> truncate_datetime_quarterly()
+          end)
+          |> Enum.map(fn {quarter, values} ->
+            case values do
+              [measurement] ->
+                {quarter, 0.0}
+
+              values ->
+                first = values |> Enum.sort_by(fn reading -> reading.read_on end) |> List.first()
+                last = values |> Enum.sort_by(fn reading -> reading.read_on end) |> List.last()
+                consumption = last.value - first.value
+                {quarter, consumption}
             end
           end)
         end
@@ -236,6 +264,7 @@ defmodule HomeDash.DataPoints.Macros do
       unquote(change_data_point)
       unquote(total_usage_in_range)
       unquote(total_hourly)
+      unquote(total_quarterly)
     end
   end
 

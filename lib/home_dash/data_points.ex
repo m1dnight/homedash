@@ -19,7 +19,6 @@ defmodule HomeDash.DataPoints do
     solar_totals = list_solar_day_totals_last_n_days(7)
     solar_hourly = total_solar_hourly()
 
-
     %{
       gas: gas,
       electricity: electricity,
@@ -32,7 +31,10 @@ defmodule HomeDash.DataPoints do
       gas_totals: gas_totals,
       electricity_hourly: electricity_hourly,
       gas_hourly: gas_hourly,
-      solar_hourly: solar_hourly
+      solar_hourly: solar_hourly,
+      solar_quarterly: total_solar_quarterly(),
+      gas_quarterly: total_gas_quarterly(),
+      electricity_quarterly: total_electricity_quarterly()
     }
   end
 
@@ -63,6 +65,11 @@ defmodule HomeDash.DataPoints do
     |> DateTime.add(24 * 60 * 60, :second, Calendar.get_time_zone_database())
   end
 
+  def n_hours_ago(n) do
+    DateTime.now!("Etc/UTC")
+    |> DateTime.add(-1 * n * 60 * 60, :second, Calendar.get_time_zone_database())
+  end
+
   def end_of_day(day \\ nil) do
     day = if day, do: day, else: DateTime.now!("Etc/UTC")
 
@@ -76,6 +83,15 @@ defmodule HomeDash.DataPoints do
   def truncate_datetime_hour(datetime) do
     datetime
     |> Map.put(:minute, 0)
+    |> Map.put(:second, 0)
+    |> Map.put(:microsecond, {0, 0})
+  end
+
+  def truncate_datetime_quarterly(datetime) do
+    minutes = ((datetime.minute / 15) |> trunc) * 15
+
+    datetime
+    |> Map.put(:minute, minutes)
     |> Map.put(:second, 0)
     |> Map.put(:microsecond, {0, 0})
   end
