@@ -179,6 +179,7 @@ defmodule HomeDash.DataPoints.Macros do
                 {quarter, consumption}
             end
           end)
+          |> Enum.sort_by(fn {time, _} -> time end, {:asc, DateTime})
         end
       end
 
