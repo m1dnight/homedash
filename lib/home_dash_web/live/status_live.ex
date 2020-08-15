@@ -59,7 +59,8 @@ defmodule HomeDashWeb.StatusLive do
     dataset
     |> Enum.map(fn {date, _value} ->
       hour = String.pad_leading("#{date.hour}", 2, "0")
-      ~s("#{hour}:#{date.minute}")
+      minute = String.pad_leading("#{date.minute}", 2, "0")
+      ~s("#{hour}:#{minute}")
     end)
     |> Enum.join(", ")
   end
