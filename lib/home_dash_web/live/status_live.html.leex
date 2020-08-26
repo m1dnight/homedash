@@ -116,11 +116,17 @@
                            "display": true,
                            "ticks": {
                               "callback": function(value, idx, values) {
-                                 return value;
+                                 if(value.endsWith('00')) {
+                                    return value;
+                                 }
+                                 else
+                                 {
+                                    return '';
+                                 }
                               },
-                              "maxTicksLimit": 10
+                              //"maxTicksLimit": 10
                               //"autoSkip": true,
-                              //"maxRotation": 0,
+                              //"minRotation": 0,
                               //"minRotation": 0
                            }
                         }],
@@ -191,11 +197,17 @@
                            "display": true,
                            "ticks": {
                               "callback": function(value, idx, values) {
-                                 return value;
+                                 if(value.endsWith('00')) {
+                                    return value;
+                                 }
+                                 else
+                                 {
+                                    return '';
+                                 }
                               },
-                              "maxTicksLimit": 10
+                              //"maxTicksLimit": 10
                               //"autoSkip": true,
-                              //"maxRotation": 0,
+                              //"minRotation": 0,
                               //"minRotation": 0
                            }
                         }],
@@ -272,10 +284,10 @@
                                  }
                                  else
                                  {
-                                    return 'nul';
+                                    return '';
                                  }
                               },
-                              "maxTicksLimit": 10
+                              //"maxTicksLimit": 10
                               //"autoSkip": true,
                               //"minRotation": 0,
                               //"minRotation": 0
