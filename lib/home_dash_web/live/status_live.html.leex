@@ -81,11 +81,8 @@
    <div class="w-full md:w-1/1 xl:w-1/1 p-3">
       <!--Graph Card-->
       <div class="bg-white border-transparent rounded-lg shadow-lg">
-         <div class="bg-red-500 uppercase text-gray-800 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2 md:text-center">
-            <h5 class="font-bold uppercase text-gray-600">Gas Quarterly Consumption</h5>
-         </div>
          <div class="p-5">
-            <canvas id="chartjs-10" class="chartjs" width="undefined" height="50"></canvas>
+            <canvas id="chartjs-10" class="chartjs" width="undefined" height="100"></canvas>
             <script>
                new Chart(document.getElementById("chartjs-10"), {
                   "responsive": true,
@@ -93,13 +90,28 @@
                   "data": {
                       "labels": [<%= raw(labels_quarterly(@current.gas_quarterly)) %>],
                       "datasets": [{
-                          "label": "m3",
+                          "yAxisID": "m3",
                           "data": [<%= raw(values(@current.gas_quarterly)) %>],
                           "borderColor": "rgb(206, 18, 18)",
                           "backgroundColor": "rgba(206, 18, 18, 0.2)"
-                      }]
+                      },
+                      {
+                          "yAxisID": "kWh",
+                           "data": [<%= raw(values(@current.solar_quarterly)) %>],
+                           "borderColor": "rgb(132, 225, 188)",
+                           "backgroundColor": "rgba(132, 225, 188, 0.2)"
+                       },
+                       {
+                          "yAxisID": "kWh",
+                           "data": [<%= raw(values(@current.electricity_quarterly)) %>],
+                           "borderColor": "rgb(250, 202, 21)",
+                           "backgroundColor": "rgba(250, 202, 21, 0.2)"
+                       }]
                   },
                   "options": {
+                     "tooltips": {
+                        "mode": 'dataset'
+                     },
                      "elements": {
                         "point": {
                            "radius": 0
@@ -124,13 +136,13 @@
                                     return '';
                                  }
                               },
-                              //"maxTicksLimit": 10
                               //"autoSkip": true,
-                              //"minRotation": 0,
+                              //"maxRotation": 0,
                               //"minRotation": 0
                            }
                         }],
                         "yAxes": [{
+                           "id": "kWh",
                            "gridLines": {
                               "display": true
                            },
@@ -144,6 +156,10 @@
                               //"maxRotation": 0,
                               //"minRotation": 0
                            }
+                        },
+                        {
+                           "id": "m3",
+                           "position": "right"
                         }]
                      }
                   }
@@ -155,167 +171,6 @@
    </div>
 </div>
 <!-- Row -->
-
-
-<!-- ####################################################################### -->
-<!-- Row with quarterly Electrity ########################################## -->
-<div class="flex flex-wrap" phx-update="ignore">
-   <div class="w-full md:w-1/1 xl:w-1/1 p-3">
-      <!--Graph Card-->
-      <div class="bg-white border-transparent rounded-lg shadow-lg">
-         <div class="bg-yellow-300 uppercase text-gray-800 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2 md:text-center">
-            <h5 class="font-bold uppercase text-gray-600">Electricity Quarterly Consumption</h5>
-         </div>
-         <div class="p-5">
-            <canvas id="chartjs-11" class="chartjs" width="undefined" height="50"></canvas>
-            <script>
-               new Chart(document.getElementById("chartjs-11"), {
-                   "type": "line",
-                   "data": {
-                       "labels": [<%= raw(labels_quarterly(@current.electricity_quarterly)) %>],
-                       "datasets": [{
-                           "label": "kWh",
-                           "data": [<%= raw(values(@current.electricity_quarterly)) %>],
-                           "borderColor": "rgb(250, 202, 21)",
-                           "backgroundColor": "rgba(250, 202, 21, 0.2)"
-                       }]
-                   },
-                    "options": {
-                     "elements": {
-                        "point": {
-                           "radius": 0
-                        }
-                     },
-                     "legend": {
-                        "display": false
-                     },
-                     "scales": {
-                        "xAxes": [{
-                           "gridLines": {
-                              "display": false
-                           },
-                           "display": true,
-                           "ticks": {
-                              "callback": function(value, idx, values) {
-                                 if(value.endsWith('00')) {
-                                    return value;
-                                 }
-                                 else
-                                 {
-                                    return '';
-                                 }
-                              },
-                              //"maxTicksLimit": 10
-                              //"autoSkip": true,
-                              //"minRotation": 0,
-                              //"minRotation": 0
-                           }
-                        }],
-                        "yAxes": [{
-                           "gridLines": {
-                              "display": true
-                           },
-                           "display": true,
-                           "ticks": {
-                              "callback": function(value, idx, values) {
-                                 return value;
-                              },
-                              "maxTicksLimit": 3
-                              //"autoSkip": true,
-                              //"maxRotation": 0,
-                              //"minRotation": 0
-                           }
-                        }]
-                     }
-                  }
-               });
-            </script>
-         </div>
-      </div>
-   </div>
-</div>
-<!-- Row -->
-
-
-<!-- ####################################################################### -->
-<!-- Row with quarterly Injection ########################################## -->
-<div class="flex flex-wrap" phx-update="ignore">
-   <!--/Graph Card Solar -->
-   <!--/Graph Card-->
-   <div class="w-full md:w-1/1 xl:w-1/1 p-3">
-      <!--Graph Card-->
-      <div class="bg-white border-transparent rounded-lg shadow-lg">
-         <div class="bg-green-300 uppercase text-gray-800 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2 md:text-center">
-            <h5 class="font-bold uppercase text-gray-600">Solar Quarterly Injection</h5>
-         </div>
-         <div class="p-5">
-            <canvas id="chartjs-12" class="chartjs" width="undefined" height="50"></canvas>
-            <script>
-               new Chart(document.getElementById("chartjs-12"), {
-                   "type": "line",
-                   "data": {
-                       "labels": [<%= raw(labels_quarterly(@current.solar_quarterly)) %>],
-                       "datasets": [{
-                           "label": "kWh",
-                           "data": [<%= raw(values(@current.solar_quarterly)) %>],
-                           "borderColor": "rgb(132, 225, 188)",
-                           "backgroundColor": "rgba(132, 225, 188, 0.2)"
-                       }]
-                   },
-                  "options": {
-                     "elements": {
-                        "point": {
-                           "radius": 0
-                        }
-                     },
-                     "legend": {
-                        "display": false
-                     },
-                     "scales": {
-                        "xAxes": [{
-                           "gridLines": {
-                              "display": false
-                           },
-                           "display": true,
-                           "ticks": {
-                              "callback": function(value, idx, values) {
-                                 if(value.endsWith('00')) {
-                                    return value;
-                                 }
-                                 else
-                                 {
-                                    return '';
-                                 }
-                              },
-                              //"maxTicksLimit": 10
-                              //"autoSkip": true,
-                              //"minRotation": 0,
-                              //"minRotation": 0
-                           }
-                        }],
-                        "yAxes": [{
-                           "gridLines": {
-                              "display": true
-                           },
-                           "display": true,
-                           "ticks": {
-                              "callback": function(value, idx, values) {
-                                 return value;
-                              },
-                              "maxTicksLimit": 3
-                              //"autoSkip": true,
-                              //"maxRotation": 0,
-                              //"minRotation": 0
-                           }
-                        }]
-                     }
-                  }
-               });
-            </script>
-         </div>
-      </div>
-   </div>
-</div>
 
 
 <!-- ####################################################################### -->
