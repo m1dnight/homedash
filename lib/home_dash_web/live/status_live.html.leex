@@ -88,17 +88,61 @@
             <canvas id="chartjs-10" class="chartjs" width="undefined" height="50"></canvas>
             <script>
                new Chart(document.getElementById("chartjs-10"), {
-               	"type": "line",
-               	"data": {
-               		"labels": [<%= raw(labels_quarterly(@current.gas_quarterly)) %>],
-               "datasets": [{
-               	"label": "m3",
-               	"data": [<%= raw(values(@current.gas_quarterly)) %>],
-               			"borderColor": "rgb(206, 18, 18)",
-               			"backgroundColor": "rgba(206, 18, 18, 0.2)"
-                       }]
-                   }
-               });
+                  "responsive": true,
+                  "type": "line",
+                  "data": {
+                      "labels": [<%= raw(labels_quarterly(@current.gas_quarterly)) %>],
+                      "datasets": [{
+                          "label": "m3",
+                          "data": [<%= raw(values(@current.gas_quarterly)) %>],
+                          "borderColor": "rgb(206, 18, 18)",
+                          "backgroundColor": "rgba(206, 18, 18, 0.2)"
+                      }]
+                  },
+                  "options": {
+                     "elements": {
+                        "point": {
+                           "radius": 0
+                        }
+                     },
+                     "legend": {
+                        "display": false
+                     },
+                     "scales": {
+                        "xAxes": [{
+                           "gridLines": {
+                              "display": false
+                           },
+                           "display": true,
+                           "ticks": {
+                              "callback": function(value, idx, values) {
+                                 return value;
+                              },
+                              "maxTicksLimit": 10
+                              //"autoSkip": true,
+                              //"maxRotation": 0,
+                              //"minRotation": 0
+                           }
+                        }],
+                        "yAxes": [{
+                           "gridLines": {
+                              "display": true
+                           },
+                           "display": true,
+                           "ticks": {
+                              "callback": function(value, idx, values) {
+                                 return value;
+                              },
+                              "maxTicksLimit": 3
+                              //"autoSkip": true,
+                              //"maxRotation": 0,
+                              //"minRotation": 0
+                           }
+                        }]
+                     }
+                  }
+
+              });
             </script>
          </div>
       </div>
@@ -120,16 +164,58 @@
             <canvas id="chartjs-11" class="chartjs" width="undefined" height="50"></canvas>
             <script>
                new Chart(document.getElementById("chartjs-11"), {
-               	"type": "line",
-               	"data": {
-               		"labels": [<%= raw(labels_quarterly(@current.electricity_quarterly)) %>],
-               "datasets": [{
-               	"label": "kWh",
-               	"data": [<%= raw(values(@current.electricity_quarterly)) %>],
-               "borderColor": "rgb(250, 202, 21)",
-               	"backgroundColor": "rgba(250, 202, 21, 0.2)"
+                   "type": "line",
+                   "data": {
+                       "labels": [<%= raw(labels_quarterly(@current.electricity_quarterly)) %>],
+                       "datasets": [{
+                           "label": "kWh",
+                           "data": [<%= raw(values(@current.electricity_quarterly)) %>],
+                           "borderColor": "rgb(250, 202, 21)",
+                           "backgroundColor": "rgba(250, 202, 21, 0.2)"
                        }]
-                   }
+                   },
+                    "options": {
+                     "elements": {
+                        "point": {
+                           "radius": 0
+                        }
+                     },
+                     "legend": {
+                        "display": false
+                     },
+                     "scales": {
+                        "xAxes": [{
+                           "gridLines": {
+                              "display": false
+                           },
+                           "display": true,
+                           "ticks": {
+                              "callback": function(value, idx, values) {
+                                 return value;
+                              },
+                              "maxTicksLimit": 10
+                              //"autoSkip": true,
+                              //"maxRotation": 0,
+                              //"minRotation": 0
+                           }
+                        }],
+                        "yAxes": [{
+                           "gridLines": {
+                              "display": true
+                           },
+                           "display": true,
+                           "ticks": {
+                              "callback": function(value, idx, values) {
+                                 return value;
+                              },
+                              "maxTicksLimit": 3
+                              //"autoSkip": true,
+                              //"maxRotation": 0,
+                              //"minRotation": 0
+                           }
+                        }]
+                     }
+                  }
                });
             </script>
          </div>
@@ -154,16 +240,64 @@
             <canvas id="chartjs-12" class="chartjs" width="undefined" height="50"></canvas>
             <script>
                new Chart(document.getElementById("chartjs-12"), {
-               	"type": "line",
-               	"data": {
-               		"labels": [<%= raw(labels_quarterly(@current.solar_quarterly)) %>],
-               "datasets": [{
-               	"label": "kWh",
-               	"data": [<%= raw(values(@current.solar_quarterly)) %>],
-               "borderColor": "rgb(132, 225, 188)",
-               	"backgroundColor": "rgba(132, 225, 188, 0.2)"
+                   "type": "line",
+                   "data": {
+                       "labels": [<%= raw(labels_quarterly(@current.solar_quarterly)) %>],
+                       "datasets": [{
+                           "label": "kWh",
+                           "data": [<%= raw(values(@current.solar_quarterly)) %>],
+                           "borderColor": "rgb(132, 225, 188)",
+                           "backgroundColor": "rgba(132, 225, 188, 0.2)"
                        }]
-                   }
+                   },
+                  "options": {
+                     "elements": {
+                        "point": {
+                           "radius": 0
+                        }
+                     },
+                     "legend": {
+                        "display": false
+                     },
+                     "scales": {
+                        "xAxes": [{
+                           "gridLines": {
+                              "display": false
+                           },
+                           "display": true,
+                           "ticks": {
+                              "callback": function(value, idx, values) {
+                                 if(value.endsWith('00')) {
+                                    return value;
+                                 }
+                                 else
+                                 {
+                                    return 'nul';
+                                 }
+                              },
+                              "maxTicksLimit": 10
+                              //"autoSkip": true,
+                              //"minRotation": 0,
+                              //"minRotation": 0
+                           }
+                        }],
+                        "yAxes": [{
+                           "gridLines": {
+                              "display": true
+                           },
+                           "display": true,
+                           "ticks": {
+                              "callback": function(value, idx, values) {
+                                 return value;
+                              },
+                              "maxTicksLimit": 3
+                              //"autoSkip": true,
+                              //"maxRotation": 0,
+                              //"minRotation": 0
+                           }
+                        }]
+                     }
+                  }
                });
             </script>
          </div>
