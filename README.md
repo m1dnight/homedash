@@ -1,3 +1,5 @@
+![screenshot](https://raw.githubusercontent.com/m1dnight/homedash/master/screenshot.png)
+
 # Homedash
 
 A dashboard that shows gas, electricity and solar consumption/production.
