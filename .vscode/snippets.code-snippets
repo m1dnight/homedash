@@ -1,0 +1,8 @@
+{
+	"debug": {
+		"prefix": "debug",
+		"body": [
+			"IO.puts \"#{DateTime.now!(\"Etc/UTC\") |> DateTime.to_iso8601()} $1\""
+		]
+	}
+}

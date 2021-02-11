@@ -1,0 +1,49 @@
+<span id="solar" data-labels='<%= raw(@data.solar |> labels_day()) %>' data-values='<%= raw(@data.solar |> values_recent() )%>'></span>
+<span id="gas" data-labels='<%= raw(@data.gas |> labels_day()) %>' data-values='<%= raw(@data.gas |> values_recent() )%>'></span>
+<span id="electricity" data-labels='<%= raw(@data.electricity |> labels_day()) %>' data-values='<%= raw(@data.electricity |> values_recent() )%>'></span>
+
+
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card card-chart">
+      <div class="card-header">
+        <h3 class="card-title"><i class="yellow" data-feather="zap"></i>Electricity</h3>
+      </div>
+      <div class="card-body">
+        <div class="chart-area">
+          <canvas id="electricityChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-12">
+    <div class="card card-chart">
+      <div class="card-header">
+        <h3 class="card-title"><i class="green" data-feather="sun"></i>Solar</h3>
+      </div>
+      <div class="card-body">
+        <div class="chart-area">
+          <canvas id="solarChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-lg-12">
+    <div class="card card-chart">
+      <div class="card-header">
+        <h3 class="card-title"><i class="red" data-feather="thermometer"></i>Gas</h3>
+      </div>
+      <div class="card-body">
+        <div class="chart-area">
+          <canvas id="gasChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

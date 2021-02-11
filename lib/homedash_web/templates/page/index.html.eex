@@ -1,0 +1,193 @@
+<span id="solar" data-labels='<%= raw(@data.recent.solar |> labels_hour()) %>' data-values='<%= raw(@data.recent.solar |> values_recent() )%>'></span>
+<span id="gas" data-labels='<%= raw(@data.recent.gas |> labels_hour()) %>' data-values='<%= raw(@data.recent.gas |> values_recent() )%>'></span>
+<span id="electricity" data-labels='<%= raw(@data.recent.electricity |> labels_hour()) %>' data-values='<%= raw(@data.recent.electricity |> values_recent() )%>'></span>
+
+<div class="row">
+   <div class="col-12">
+      <div class="card card-chart">
+         <div class="card-header ">
+            <div class="row">
+               <div class="col-sm-6 text-left">
+                  <h5 class="card-category">Total Consumption (<%= format_datetime(@data.last) %>)</h5>
+                  <h2 class="card-title" id="chart-label">Electricity</h2>
+               </div>
+               <div class="col-sm-6">
+                  <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
+                     <label class="btn btn-sm btn-primary btn-simple active" id="0">
+                        <input type="radio" name="options" checked>
+                        <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Electricity</span>
+                        <span class="d-block d-sm-none">
+                           <span data-feather="zap"></span>
+                        </span>
+                     </label>
+                     <label class="btn btn-sm btn-primary btn-simple" id="1">
+                        <input type="radio" class="d-none d-sm-none" name="options">
+                        <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Solar</span>
+                        <span class="d-block d-sm-none">
+                           <span data-feather="sun"></span>
+                        </span>
+                     </label>
+                     <label class="btn btn-sm btn-primary btn-simple" id="2">
+                        <input type="radio" class="d-none" name="options">
+                        <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Gas</span>
+                        <span class="d-block d-sm-none">
+                           <span data-feather="thermometer"></span>
+                        </span>
+                     </label>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="card-body">
+            <div class="chart-area">
+               <canvas id="indexChart"></canvas>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+<div class="row">
+   <div class="col-lg-4">
+      <div class="counter-card card text-white bg-primary mb-3">
+      <div class="card-body">
+      <h5 class="card-title text-center"><span class="yellow" data-feather="zap"></span> <%= @data.electricity_today |> format_float() %> kWh</h5>
+      <p class="card-text text-center">
+         <div class="">
+            <table class="table table-borderless averages">
+               <tbody>
+                  <tr>
+                     <td class="label">
+                        Weekly Avg
+                     </td>
+                     <td class="value">
+                        <%= @data.electricity_weekly_avg |> format_float() %> kWh
+                     </td>
+                  </tr>
+                  <tr>
+                     <td class="label">
+                        Monthly Avg
+                     </td>
+                     <td class="value">
+                        <%= @data.electricity_monthly_avg |> format_float() %> kWh
+                     </td>
+                  </tr>
+                  <tr>
+                     <td class="label">
+                        Yearly Avg
+                     </td>
+                     <td class="value">
+                        <%= @data.electricity_yearly_avg |> format_float() %> kWh
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </p>
+      </div>
+      </div>
+   </div>
+   <div class="col-lg-4">
+      <div class="counter-card card text-white bg-primary mb-3">
+      <div class="card-body">
+      <h5 class="card-title text-center"><span class="green" data-feather="sun"></span> <%= @data.solar_today |> format_float() %> kWh</h5>
+      <p class="card-text text-center">
+         <div class="">
+            <table class="table table-borderless averages">
+               <tbody>
+                  <tr>
+                     <td class="label">
+                        Weekly Avg
+                     </td>
+                     <td class="value">
+                        <%= @data.solar_weekly_avg |> format_float() %> kWh
+                     </td>
+                  </tr>
+                  <tr>
+                     <td class="label">
+                        Monthly Avg
+                     </td>
+                     <td class="value">
+                        <%= @data.solar_monthly_avg |> format_float() %> kWh
+                     </td>
+                  </tr>
+                  <tr>
+                     <td class="label">
+                        Yearly Avg
+                     </td>
+                     <td class="value">
+                        <%= @data.solar_yearly_avg |> format_float() %> kWh
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </p>
+      </div>
+      </div>
+   </div>
+   <div class="col-lg-4">
+      <div class="counter-card card text-white bg-primary mb-3">
+      <div class="card-body">
+      <h5 class="card-title text-center"><span class="red" data-feather="thermometer"></span> <%= @data.gas_today |> format_float() %> m<sup>3</sup></h5>
+      <p class="card-text text-center">
+         <div class="">
+            <table class="table table-borderless averages">
+               <tbody>
+                  <tr>
+                     <td class="label">
+                        Weekly Avg
+                     </td>
+                     <td class="value">
+                        <%= @data.gas_weekly_avg |> format_float() %> kWh
+                     </td>
+                  </tr>
+                  <tr>
+                     <td class="label">
+                        Monthly Avg
+                     </td>
+                     <td class="value">
+                        <%= @data.gas_monthly_avg |> format_float() %> kWh
+                     </td>
+                  </tr>
+                  <tr>
+                     <td class="label">
+                        Yearly Avg
+                     </td>
+                     <td class="value">
+                        <%= @data.gas_yearly_avg |> format_float() %> kWh
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </p>
+      </div>
+      </div>
+   </div>
+</div>
+
+
+<%#
+
+
+<div class="col-md-6">
+   <div class="card">
+      <div class="card-header">
+         <h4 class="card-title">Notification states</h4>
+      </div>
+      <div class="card-body">
+         <div class="alert alert-primary alert-dismissible fade show" role="alert">
+         <button type="button" class="close" aria-label="Close">
+         <span aria-hidden="true">×</span></button><span><b>Primary - </b>This is a regular notification made with ".alert-primary"</span></div>
+         <div class="alert alert-info alert-dismissible fade show" role="alert"><button type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button><span><b>Info - </b>This is a regular notification made with ".alert-info"</span></div>
+         <div class="alert alert-success alert-dismissible fade show" role="alert"><button type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button><span><b>Success - </b>This is a regular notification made with ".alert-success"</span></div>
+         <div class="alert alert-warning alert-dismissible fade show" role="alert"><button type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button><span><b>Warning - </b>This is a regular notification made with ".alert-warning"</span></div>
+         <div class="alert alert-danger alert-dismissible fade show" role="alert"><button type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button><span><b>Danger - </b>This is a regular notification made with ".alert-danger"</span></div>
+      </div>
+   </div>
+</div>
+
+
+
+ %>

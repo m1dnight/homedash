@@ -1,0 +1,161 @@
+<html>
+
+<head>
+</head>
+<style>
+   html,
+   body {
+      height: <%=@height %>px;
+      width: <%=@width %>px;
+      background: white;
+      margin: 0;
+   }
+
+   .w-one-third {
+      width: <%=(@width / 3 |> floor() |>trunc()) - 4 %>px;
+   }
+
+   .h-two-third {
+      height: <%=((@height / 3) * 2 |> floor() |> trunc()) - 4 %>px;
+   }
+
+   .h-three-third {
+      height: <%=@height|> floor() |> trunc()%>px;
+   }
+
+   .column {
+      margin: 2px;
+      float: left;
+      margin-top: auto;
+      margin-bottom: auto;
+   }
+
+   .counter {
+      text-align: center;
+      font-family: courier, arial, helvetica;
+      font-size: 1.3rem;
+   }
+
+   h6 {
+      padding: 0;
+      margin: 0.2rem;
+   }
+
+   p {
+      margin: 0;
+      padding: 0;
+   }
+
+   .fixed {
+      position: fixed;
+      bottom: 0px;
+      left: 0px;
+      width: <%=@width  %>px;
+      font-size: 0.6rem;
+   }
+</style>
+
+<body>
+   <span id="solar" data-labels='<%= raw(@data.solar |> labels_day()) %>'
+      data-values='<%= raw(@data.solar |> values_recent() )%>'></span>
+   <span id="gas" data-labels='<%= raw(@data.gas |> labels_day()) %>'
+      data-values='<%= raw(@data.gas |> values_recent() )%>'></span>
+   <span id="electricity" data-labels='<%= raw(@data.electricity |> labels_day()) %>'
+      data-values='<%= raw(@data.electricity |> values_recent() )%>'></span>
+
+   <div id="left" class="w-one-third column h-three-third">
+      <div class=" card">
+         <div class="card-header">
+            <h3 class="card-title" style="text-align: center;font-family:arial,helvetica;">
+               Zonnepanelen
+            </h3>
+         </div>
+         <div class="card-body">
+            <div class="chart-area">
+               <canvas id="solarChart"></canvas>
+            </div>
+         </div>
+      </div>
+      <div class="counter">
+         <div>
+            <h6>Vandaag</h6>
+            <p><%= @data.today.solar  |> Float.round(2)%> kWh</p>
+         </div>
+         <div>
+            <h6>Gemiddeld</h6>
+            <p><%=@data.averages.solar   |> Float.round(2)%> kWh</p>
+         </div>
+         <div>
+            <h6>Meterstand</h6>
+            <p><%= @data.totals.solar.value  |> Float.round(2)%> kWh</p>
+         </div>
+      </div>
+   </div>
+   <div id="center" class="w-one-third column h-three-third">
+      <div class=" card">
+         <div class="card-header">
+            <h3 class="card-title" style="text-align: center;font-family:arial,helvetica;">
+               Gas
+            </h3>
+         </div>
+         <div class="card-body">
+            <div class="chart-area">
+               <canvas id="gasChart"></canvas>
+            </div>
+         </div>
+      </div>
+      <div class="counter">
+         <div>
+            <h6>Vandaag</h6>
+            <p><%= @data.today.gas  |> Float.round(2)%> m3</p>
+         </div>
+         <div>
+            <h6>Gemiddeld</h6>
+            <p><%=@data.averages.gas   |> Float.round(2)%> m3</p>
+         </div>
+         <div>
+            <h6>Meterstand</h6>
+            <p><%= @data.totals.gas.value  |> Float.round(2)%> m3</p>
+         </div>
+      </div>
+   </div>
+   <div id="right" class="w-one-third column h-three-third">
+      <div class=" card">
+         <div class="card-header">
+            <h3 class="card-title" style="text-align: center;font-family:arial,helvetica;">
+               Elektriciteit
+            </h3>
+         </div>
+         <div class="card-body">
+            <div class="chart-area">
+               <canvas id="electricityChart"></canvas>
+            </div>
+         </div>
+      </div>
+      <div class="counter">
+         <div class="counter">
+            <div>
+               <h6>Vandaag</h6>
+               <p><%= @data.today.electricity  |> Float.round(2)%> kWh</p>
+            </div>
+            <div>
+               <h6>Gemiddeld</h6>
+               <p><%=@data.averages.electricity   |> Float.round(2)%> kWh</p>
+            </div>
+            <div>
+               <h6>Meterstand</h6>
+               <p><%= @data.totals.electricity.value  |> Float.round(2)%> kWh</p>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div id="timestamp" class="fixed">
+      <%= format_datetime(@data.last) %>
+   </div>
+
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+   <script src="<%= Routes.static_path(@conn, "/js/edash.js") %>"></script>
+</body>
+
+</html>

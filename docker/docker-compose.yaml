@@ -1,0 +1,39 @@
+version: "3"
+
+networks:
+  internal:
+    external: false
+
+services:
+  homedash:
+    restart: always
+    image: m1dnight/homedash:dev
+    environment:
+      - SECRET_KEY_BASE=${SECRET_KEY_BASE}
+      - LIVE_VIEW_SALT=${LIVE_VIEW_SALT}
+      - DATABASE_DB=${DATABASE_DB}
+      - DATABASE_USER=${DATABASE_USER}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - DATABASE_HOST=db
+      - PORT=${PORT}
+      - API_TOKEN=${API_TOKEN}
+      - TZ=${TZ}
+    ports:
+      - ${PORT}:${PORT}
+    networks:
+      - internal
+    depends_on:
+      - db
+
+  db:
+    restart: always
+    image: postgres:12
+    volumes:
+      - '${DATABASE_DATA}:/var/lib/postgresql/data'
+    environment:
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_DB=${DATABASE_DB}
+      - TZ=${TZ}
+      - PGTZ=${TZ}
+    networks:
+      - internal
