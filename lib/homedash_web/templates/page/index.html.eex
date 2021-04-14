@@ -50,122 +50,14 @@
 </div>
 
 <div class="row">
-   <div class="col-lg-4">
-      <div class="counter-card card text-white bg-primary mb-3">
-      <div class="card-body">
+   <div class="col-sm-4">
       <h5 class="card-title text-center"><span class="yellow" data-feather="zap"></span> <%= @data.electricity_today |> format_float() %> kWh</h5>
-      <p class="card-text text-center">
-         <div class="">
-            <table class="table table-borderless averages">
-               <tbody>
-                  <tr>
-                     <td class="label">
-                        Weekly Avg
-                     </td>
-                     <td class="value">
-                        <%= @data.electricity_weekly_avg |> format_float() %> kWh
-                     </td>
-                  </tr>
-                  <tr>
-                     <td class="label">
-                        Monthly Avg
-                     </td>
-                     <td class="value">
-                        <%= @data.electricity_monthly_avg |> format_float() %> kWh
-                     </td>
-                  </tr>
-                  <tr>
-                     <td class="label">
-                        Yearly Avg
-                     </td>
-                     <td class="value">
-                        <%= @data.electricity_yearly_avg |> format_float() %> kWh
-                     </td>
-                  </tr>
-               </tbody>
-            </table>
-         </div>
-      </p>
-      </div>
-      </div>
    </div>
-   <div class="col-lg-4">
-      <div class="counter-card card text-white bg-primary mb-3">
-      <div class="card-body">
+   <div class="col-sm-4">
       <h5 class="card-title text-center"><span class="green" data-feather="sun"></span> <%= @data.solar_today |> format_float() %> kWh</h5>
-      <p class="card-text text-center">
-         <div class="">
-            <table class="table table-borderless averages">
-               <tbody>
-                  <tr>
-                     <td class="label">
-                        Weekly Avg
-                     </td>
-                     <td class="value">
-                        <%= @data.solar_weekly_avg |> format_float() %> kWh
-                     </td>
-                  </tr>
-                  <tr>
-                     <td class="label">
-                        Monthly Avg
-                     </td>
-                     <td class="value">
-                        <%= @data.solar_monthly_avg |> format_float() %> kWh
-                     </td>
-                  </tr>
-                  <tr>
-                     <td class="label">
-                        Yearly Avg
-                     </td>
-                     <td class="value">
-                        <%= @data.solar_yearly_avg |> format_float() %> kWh
-                     </td>
-                  </tr>
-               </tbody>
-            </table>
-         </div>
-      </p>
-      </div>
-      </div>
    </div>
-   <div class="col-lg-4">
-      <div class="counter-card card text-white bg-primary mb-3">
-      <div class="card-body">
+   <div class="col-sm-4">
       <h5 class="card-title text-center"><span class="red" data-feather="thermometer"></span> <%= @data.gas_today |> format_float() %> m<sup>3</sup></h5>
-      <p class="card-text text-center">
-         <div class="">
-            <table class="table table-borderless averages">
-               <tbody>
-                  <tr>
-                     <td class="label">
-                        Weekly Avg
-                     </td>
-                     <td class="value">
-                        <%= @data.gas_weekly_avg |> format_float() %> kWh
-                     </td>
-                  </tr>
-                  <tr>
-                     <td class="label">
-                        Monthly Avg
-                     </td>
-                     <td class="value">
-                        <%= @data.gas_monthly_avg |> format_float() %> kWh
-                     </td>
-                  </tr>
-                  <tr>
-                     <td class="label">
-                        Yearly Avg
-                     </td>
-                     <td class="value">
-                        <%= @data.gas_yearly_avg |> format_float() %> kWh
-                     </td>
-                  </tr>
-               </tbody>
-            </table>
-         </div>
-      </p>
-      </div>
-      </div>
    </div>
 </div>
 

@@ -159,14 +159,14 @@ if (elem != null) {
     var data = {
         labels: labels,
         datasets: [{
-            label: "kWh",
+            label: "m³",
             fill: true,
             backgroundColor: gradientStroke,
-            borderColor: '#ff71ce   ',
+            borderColor: '#ff71ce',
             borderWidth: 2,
             borderDash: [],
             borderDashOffset: 0.0,
-            pointBackgroundColor: '#fffb96',
+            pointBackgroundColor: '#d048b6',
             pointBorderColor: 'rgba(255,255,255,0)',
             pointHoverBackgroundColor: '#d048b6',
             pointBorderWidth: 20,

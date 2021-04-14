@@ -109,6 +109,7 @@ if (elem != null) {
     gradientStroke.addColorStop(0.6, 'RGBA(255, 251, 150, 0.001)');
     gradientStroke.addColorStop(0, 'rgba(0,0,0,0)'); //purple colors
     data.datasets[0].backgroundColor = gradientStroke;
+    data.datasets[0].label = "kWh";
 
     data.datasets[0].borderColor = "#fffb96";
     data.datasets[0].pointBackgroundColor = "#fffb96";
@@ -133,6 +134,7 @@ if (elem != null) {
     gradientStroke.addColorStop(0.6, 'RGBA(5, 255, 161, 0.001)');
     gradientStroke.addColorStop(0, 'rgba(0,0,0,0)'); //purple colors
     data.datasets[0].backgroundColor = gradientStroke;
+    data.datasets[0].label = "kWh";
 
     data.datasets[0].borderColor = "#05ffa1";
     data.datasets[0].pointBackgroundColor = "#05ffa1";
@@ -157,10 +159,12 @@ if (elem != null) {
     gradientStroke.addColorStop(0.6, 'RGBA(255, 113, 206, 0.001)');
     gradientStroke.addColorStop(0, 'rgba(0,0,0,0)'); //purple colors
     data.datasets[0].backgroundColor = gradientStroke;
+    data.datasets[0].label = "m³";
     data.datasets[0].borderColor = "#ff71ce";
     data.datasets[0].pointBackgroundColor = "#ff71ce";
     data.datasets[0].pointHoverBackgroundColor = "#ff71ce";
     data.datasets[0].data = values;
+
     data.labels = labels;
     indexChart.update();
   });
