@@ -4,7 +4,7 @@ defmodule HomedashWeb.Router do
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
-    plug :fetch_flash
+    plug :fetch_live_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
@@ -21,6 +21,7 @@ defmodule HomedashWeb.Router do
     post "/electricity", ApiController, :create_electricity_datapoint
     post "/gas", ApiController, :create_gas_datapoint
     post "/solar", ApiController, :create_solar_datapoint
+    post "/current", ApiController, :current
   end
 
   scope "/", HomedashWeb do

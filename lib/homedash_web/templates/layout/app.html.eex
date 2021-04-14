@@ -9,6 +9,7 @@
       <meta name="author" content="">
       <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏡</text></svg>">
       <title>Groenenbrielstraat</title>
+      <%= csrf_meta_tag() %>
       <!-- Bootstrap core CSS -->
       <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
    </head>
@@ -81,7 +82,7 @@
 
             </nav>
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-               <%= render @view_module, @view_template, assigns %>
+               <%= @inner_content %>
             </main>
          </div>
       </div>

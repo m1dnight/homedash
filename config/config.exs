@@ -15,7 +15,8 @@ config :homedash, HomedashWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "C08kNkqQ/I598+brIB5MEJtI7ke/6tgFI4+ej1GiF14sWRoKmWyxBsvJO7sL2s57",
   render_errors: [view: HomedashWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Homedash.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: Homedash.PubSub, adapter: Phoenix.PubSub.PG2],
+  live_view: [signing_salt: "C08kNkqQ/I598+brIB5MEJtI7ke/6tgFI4+ej1GiF14sWRoKmWyxBsvJO7sL2s57"]
 
 # Configures Elixir's Logger
 config :logger, :console,
