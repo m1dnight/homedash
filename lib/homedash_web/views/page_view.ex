@@ -5,7 +5,6 @@ defmodule HomedashWeb.PageView do
 
     measurements
     |> Enum.map(fn v = %{read_on_group_local: dt} ->
-      IO.inspect v
       day = "#{dt.day}"
       month = "#{dt.month}" |> String.pad_leading(2, "0")
       "#{day}/#{month}"

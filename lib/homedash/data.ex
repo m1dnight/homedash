@@ -175,12 +175,10 @@ defmodule Homedash.Data do
         limit: 4,
         order_by: fragment("read_on desc")
 
-    data = Repo.all(query)
+    Repo.all(query)
     |> Enum.map(fn value ->
       Map.merge(value, %{read_on_tz: ensure_local(value.read_on_tz)})
     end)
-    IO.puts "Data: #{inspect data}"
-    data
   end
 
   @doc """
@@ -193,8 +191,6 @@ defmodule Homedash.Data do
       |> ensure_utc()
       |> truncate_day()
       |> add_days(-1 * (history - 1))
-
-    IO.puts "getting oldest since #{inspect oldest}"
 
     # Create a query that selects all the data, but also computes the datetime in
     # the local timezone (necessary for binning properly).
@@ -223,12 +219,10 @@ defmodule Homedash.Data do
         group_by: fragment("read_on_group"),
         order_by: fragment("read_on_group asc")
 
-    data = Repo.all(query)
+    Repo.all(query)
     |> Enum.map(fn value ->
       Map.merge(value, %{read_on_group_local: ensure_local(value.read_on_group)})
     end)
-    IO.puts "Data: #{inspect data}"
-    data
   end
 
   @doc """

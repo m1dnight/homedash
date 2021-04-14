@@ -14,6 +14,9 @@
         <div class="chart-area">
           <canvas id="electricityChart"></canvas>
         </div>
+        <span class="badge badge-warning">Weekly Average: <%=@data.electricity7 |> format_float() %> kWh</span>
+        <span class="badge badge-warning">Monthly Average: <%=@data.electricity30 |> format_float() %> kWh</span>
+        <span class="badge badge-warning">Yearly Average: <%=@data.electricity365 |> format_float() %> kWh</span>
       </div>
     </div>
   </div>
@@ -27,6 +30,9 @@
         <div class="chart-area">
           <canvas id="solarChart"></canvas>
         </div>
+        <span class="badge badge-success">Weekly Average: <%=@data.solar7 |> format_float() %> kWh</span>
+        <span class="badge badge-success">Monthly Average: <%=@data.solar30 |> format_float() %> kWh</span>
+        <span class="badge badge-success">Yearly Average: <%=@data.solar365 |> format_float() %> kWh</span>
       </div>
     </div>
   </div>
@@ -41,6 +47,9 @@
         <div class="chart-area">
           <canvas id="gasChart"></canvas>
         </div>
+        <span class="badge badge-danger">Weekly Average: <%=@data.gas7 |> format_float() %> m<sup>3</sup></span>
+        <span class="badge badge-danger">Monthly Average: <%=@data.gas30 |> format_float() %> m<sup>3</sup></span>
+        <span class="badge badge-danger">Yearly Average: <%=@data.gas365 |> format_float() %> m<sup>3</sup></span>
       </div>
     </div>
   </div>

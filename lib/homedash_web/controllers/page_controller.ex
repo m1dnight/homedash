@@ -28,8 +28,7 @@ defmodule HomedashWeb.PageController do
       :electricity_weekly_avg => electricity_daily_average(7),
       :solar_yearly_avg => solar_daily_average(365),
       :solar_monthly_avg => solar_daily_average(30),
-      :solar_weekly_avg => solar_daily_average(7),
-
+      :solar_weekly_avg => solar_daily_average(7)
     }
 
     render(conn, "index.html", data: data)
@@ -39,7 +38,16 @@ defmodule HomedashWeb.PageController do
     data = %{
       :gas => historical_gas(30),
       :solar => historical_solar(30),
-      :electricity => historical_electricity(30)
+      :electricity => historical_electricity(30),
+      :electricity7 => electricity_daily_average(7),
+      :electricity30 => electricity_daily_average(30),
+      :electricity365 => electricity_daily_average(365),
+      :gas7 => gas_daily_average(7),
+      :gas30 => gas_daily_average(30),
+      :gas365 => gas_daily_average(365),
+      :solar7 => solar_daily_average(7),
+      :solar30 => solar_daily_average(30),
+      :solar365 => solar_daily_average(365)
     }
 
     render(conn, "historical.html", data: data)
@@ -64,6 +72,7 @@ defmodule HomedashWeb.PageController do
   def debug(conn, _params) do
     render(conn, "debug.html", content: inspect(debug(), pretty: true))
   end
+
   def edash(conn, _params) do
     data = %{
       :gas => historical_gas(7),

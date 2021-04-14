@@ -4,16 +4,16 @@ defmodule HomedashWeb.Live do
   def render(assigns) do
     ~L"""
     <div class="row">
-    <div class="col-sm-6">
-       <h5 class="card-title text-center">
-       <span phx-update="ignore" class="green" data-feather="sun"></span>
-       <%= @injection |> format_float() %> kW</h5>
-    </div>
-    <div class="col-sm-6">
-       <h5 class="card-title text-center">
-       <span phx-update="ignore" class="yellow" data-feather="zap"></span>
-       <%= @consumption |> format_float() %> kW</h5>
-    </div>
+      <div class="col-6">
+        <h5 class="card-title text-center">
+        <span phx-update="ignore" class="green" data-feather="sun"></span>
+        <%= @injection |> format_float() %> kW</h5>
+      </div>
+      <div class="col-6">
+        <h5 class="card-title text-center">
+        <span phx-update="ignore" class="yellow" data-feather="zap"></span>
+        <%= @consumption |> format_float() %> kW</h5>
+      </div>
     </div>
     """
   end
