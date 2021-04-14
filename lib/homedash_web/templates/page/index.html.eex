@@ -3,6 +3,14 @@
 <span id="electricity" data-labels='<%= raw(@data.recent.electricity |> labels_hour()) %>' data-values='<%= raw(@data.recent.electricity |> values_recent() )%>'></span>
 
 <div class="row">
+   <div class="col-sm-6">
+      <h5 class="card-title text-center"><span class="green" data-feather="sun"></span> <%= @data.electricity_today |> format_float() %> kWh</h5>
+   </div>
+   <div class="col-sm-6">
+      <h5 class="card-title text-center"><span class="yellow" data-feather="zap"></span> <%= @data.electricity_today |> format_float() %> kWh</h5>
+   </div>
+</div>
+<div class="row">
    <div class="col-12">
       <div class="card card-chart">
          <div class="card-header ">
