@@ -17,14 +17,14 @@ body {
 @media (max-width: 767px) {
   .counter {
     font-size: unset;
-    font-size: 1rem; 
+    font-size: 1rem;
   }
 }
 
 @media (max-width: 767px) {
   .no-padding-mobile {
     padding-left: 0;
-    padding-right:0;
+    padding-right: 0;
   }
 }
 
@@ -153,23 +153,20 @@ body {
   border-bottom: 1px solid #e5e5e5;
 }
 
-
 /* 
  * Tables
- */ 
+ */
 
- .table {
-   color: white;
- }
+.table {
+  color: white;
+}
 
- .averages tbody tr td {
+.averages tbody tr td {
   padding: 5px;
 }
 
-
 .averages tbody tr td.label {
   text-align: right;
-
 }
 
 .averages tbody tr td.value {
@@ -183,7 +180,28 @@ body {
   font-weight: bold;
 }
 
- .counter-card {
+.counter-card {
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
   background: linear-gradient(0deg, #ba54f5, #e14eca);
- }
+}
+
+/* Historical */
+
+.average-badge {
+  font-size: 0.9rem;
+}
+
+.badge-gas {
+  color: #000;
+  background-color: $red;
+}
+
+.badge-solar {
+  color: #000;
+  background-color: $green;
+}
+
+.badge-electricity {
+  color: #000;
+  background-color: $yellow;
+}

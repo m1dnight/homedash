@@ -3,7 +3,7 @@ defmodule HomedashWeb.Live do
 
   def render(assigns) do
     ~L"""
-    <div class="row">
+    <div class="row mt-1">
       <div class="col-6">
         <h5 class="card-title text-center">
         <span phx-update="ignore" class="green" data-feather="sun"></span>

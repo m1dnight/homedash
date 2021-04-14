@@ -14,11 +14,9 @@
         <div class="chart-area">
           <canvas id="electricityChart"></canvas>
         </div>
-        <div class="text-center">
-          <span class="average-badge badge badge-electricity">Weekly Average: <%=@data.electricity7 |> format_float() %> kWh</span>
-          <span class="average-badge badge badge-electricity">Monthly Average: <%=@data.electricity30 |> format_float() %> kWh</span>
-          <span class="average-badge badge badge-electricity">Yearly Average: <%=@data.electricity365 |> format_float() %> kWh</span>
-        </div>
+        <span class="average-badge badge badge-electricity">Weekly Average: <%=@data.electricity7 |> format_float() %> kWh</span>
+        <span class="average-badge badge badge-electricity">Monthly Average: <%=@data.electricity30 |> format_float() %> kWh</span>
+        <span class="average-badge badge badge-electricity">Yearly Average: <%=@data.electricity365 |> format_float() %> kWh</span>
       </div>
     </div>
   </div>
@@ -32,11 +30,9 @@
         <div class="chart-area">
           <canvas id="solarChart"></canvas>
         </div>
-        <div class="text-center">
         <span class="average-badge badge badge-solar">Weekly Average: <%=@data.solar7 |> format_float() %> kWh</span>
         <span class="average-badge badge badge-solar">Monthly Average: <%=@data.solar30 |> format_float() %> kWh</span>
         <span class="average-badge badge badge-solar">Yearly Average: <%=@data.solar365 |> format_float() %> kWh</span>
-        </div>
       </div>
     </div>
   </div>
@@ -51,11 +47,9 @@
         <div class="chart-area">
           <canvas id="gasChart"></canvas>
         </div>
-        <div class="text-center">
         <span class="average-badge badge badge-gas">Weekly Average: <%=@data.gas7 |> format_float() %> m<sup>3</sup></span>
         <span class="average-badge badge badge-gas">Monthly Average: <%=@data.gas30 |> format_float() %> m<sup>3</sup></span>
         <span class="average-badge badge badge-gas">Yearly Average: <%=@data.gas365 |> format_float() %> m<sup>3</sup></span>
-        </div>
       </div>
     </div>
   </div>

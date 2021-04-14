@@ -98,7 +98,7 @@
       </script>
       <!-- Graphs -->
       <script src="<%= Routes.static_path(@conn, "/js/Chart.min.js") %>"></script>
-      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
       <script>
          $( document ).ready(function() {
          console.log( "ready!" );
