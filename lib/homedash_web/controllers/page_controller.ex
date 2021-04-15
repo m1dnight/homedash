@@ -38,9 +38,9 @@ defmodule HomedashWeb.PageController do
     weeks_back = 6
 
     data = %{
-      :gas => historical_gas(weeks_back * 7),
-      :solar => historical_solar(weeks_back * 7),
-      :electricity => historical_electricity(weeks_back * 7),
+      :gas => historical_gas(weeks_back),
+      :solar => historical_solar(weeks_back),
+      :electricity => historical_electricity(weeks_back),
       :electricity7 => electricity_daily_average(7),
       :electricity30 => electricity_daily_average(30),
       :electricity365 => electricity_daily_average(365),
@@ -76,10 +76,11 @@ defmodule HomedashWeb.PageController do
   end
 
   def edash(conn, _params) do
+    weeks = 2
     data = %{
-      :gas => historical_gas(21),
-      :solar => historical_solar(21),
-      :electricity => historical_electricity(21),
+      :gas => historical_gas(weeks),
+      :solar => historical_solar(weeks),
+      :electricity => historical_electricity(weeks),
       :today => %{
         :gas => gas_today(),
         :solar => solar_today(),

@@ -228,13 +228,14 @@ defmodule Homedash.Data do
   @doc """
   Computes the total consumption per week.
   """
-  def bucket_by_week(struct, history \\ 30) do
+  def bucket_by_week(struct, weeks_back \\ 4) do
     # Compute the oldest day data is required.
     oldest =
       now_tz()
-      |> ensure_utc()
+      |> Timex.beginning_of_week()
       |> truncate_day()
-      |> add_days(-1 * (history - 1))
+      |> add_days(-1 * ((weeks_back - 1) * 7))
+      |> ensure_utc()
 
     # Create a query that selects all the data, but also computes the datetime in
     # the local timezone (necessary for binning properly).
