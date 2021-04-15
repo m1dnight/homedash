@@ -48,7 +48,7 @@ var gradientChartOptionsConfigurationWithTooltipPurple = {
             barPercentage: 1.6,
             gridLines: {
                 drawBorder: true,
-                color: 'rgba(225,78,202,0.0)',
+                color: "white",
                 zeroLineColor: "black",
             },
             ticks: {
