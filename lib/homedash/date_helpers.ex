@@ -63,46 +63,4 @@ defmodule Homedash.DateHelpers do
     |> Map.put(:second, 0)
     |> Map.put(:microsecond, {0, 0})
   end
-
-  # @spec start_of_next_day(nil | map) :: none
-  # def start_of_next_day(day \\ nil) do
-  #   day = if day, do: day, else: now_tz()
-
-  #   day
-  #   |> start_of_day()
-  #   |> DateTime.add(24 * 60 * 60, :second, Calendar.get_time_zone_database())
-  # end
-
-  # @spec n_hours_ago(integer) :: DateTime.t()
-  # def n_hours_ago(n) do
-  #   now_tz()
-  #   |> DateTime.add(-1 * n * 60 * 60, :second, Calendar.get_time_zone_database())
-  # end
-
-  # @spec end_of_day(false | nil | map) :: %{hour: 23, microsecond: {0, 0}, minute: 59, second: 59}
-  # def end_of_day(day \\ nil) do
-  #   day = if day, do: day, else: now_tz()
-
-  #   day
-  #   |> Map.put(:hour, 23)
-  #   |> Map.put(:minute, 59)
-  #   |> Map.put(:second, 59)
-  #   |> Map.put(:microsecond, {0, 0})
-  # end
-
-  # def truncate_datetime_hour(datetime) do
-  #   datetime
-  #   |> Map.put(:minute, 0)
-  #   |> Map.put(:second, 0)
-  #   |> Map.put(:microsecond, {0, 0})
-  # end
-
-  # def truncate_datetime_quarterly(datetime) do
-  #   minutes = ((datetime.minute / 15) |> trunc) * 15
-
-  #   datetime
-  #   |> Map.put(:minute, minutes)
-  #   |> Map.put(:second, 0)
-  #   |> Map.put(:microsecond, {0, 0})
-  # end
 end
