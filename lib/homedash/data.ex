@@ -234,7 +234,7 @@ defmodule Homedash.Data do
       now_tz()
       |> Timex.beginning_of_week()
       |> truncate_day()
-      |> add_days(-1 * ((weeks_back - 1) * 7))
+      |> Timex.shift(weeks: -1 * weeks_back)
       |> ensure_utc()
 
     # Create a query that selects all the data, but also computes the datetime in

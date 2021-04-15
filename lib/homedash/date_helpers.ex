@@ -29,7 +29,7 @@ defmodule Homedash.DateHelpers do
   """
   def add_days(dt, n) do
     dt
-    |> DateTime.add(n * 24 * 60 * 60, :second, Calendar.get_time_zone_database())
+    |> Timex.shift(days: n)
   end
 
   @doc """
