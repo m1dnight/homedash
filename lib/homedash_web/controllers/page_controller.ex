@@ -76,9 +76,9 @@ defmodule HomedashWeb.PageController do
 
   def edash(conn, _params) do
     data = %{
-      :gas => historical_gas(7),
-      :solar => historical_solar(7),
-      :electricity => historical_electricity(7),
+      :gas => historical_gas(21),
+      :solar => historical_solar(21),
+      :electricity => historical_electricity(21),
       :today => %{
         :gas => gas_today(),
         :solar => solar_today(),
