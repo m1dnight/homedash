@@ -2,7 +2,6 @@ defmodule HomedashWeb.PageView do
   use HomedashWeb, :view
 
   def labels_day(measurements) do
-
     measurements
     |> Enum.map(fn v = %{read_on_group_local: dt} ->
       day = "#{dt.day}"

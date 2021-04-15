@@ -72,6 +72,4 @@ defmodule HomedashWeb.ApiController do
         |> send_resp(500, "Invalid input given.")
     end
   end
-
-
 end

@@ -36,6 +36,7 @@ defmodule HomedashWeb.PageController do
 
   def historical(conn, _params) do
     weeks_back = 6
+
     data = %{
       :gas => historical_gas(weeks_back * 7),
       :solar => historical_solar(weeks_back * 7),
