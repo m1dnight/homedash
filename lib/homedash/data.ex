@@ -234,7 +234,7 @@ defmodule Homedash.Data do
       now_tz()
       |> Timex.beginning_of_week()
       |> truncate_day()
-      |> Timex.shift(weeks: -1 * weeks_back)
+      |> Timex.shift(weeks: -1 * (weeks_back - 1))
       |> ensure_utc()
 
     # Create a query that selects all the data, but also computes the datetime in
@@ -335,6 +335,8 @@ defmodule Homedash.Data do
 
   def recent_gas(days \\ 7), do: bucket_by_hour(Gas, days)
 
+  def last_days_gas(days \\ 7), do: bucket_by_day(Gas, days)
+
   def historical_gas(days \\ 14), do: bucket_by_week(Gas, days)
 
   def insert_gas(attrs \\ %{}), do: insert_measurement(Gas, attrs)
@@ -354,6 +356,8 @@ defmodule Homedash.Data do
 
   def recent_solar(days \\ 7), do: bucket_by_hour(Solar, days)
 
+  def last_days_solar(days \\ 7), do: bucket_by_day(Solar, days)
+
   def historical_solar(days \\ 14), do: bucket_by_week(Solar, days)
 
   def insert_solar(attrs \\ %{}), do: insert_measurement(Solar, attrs)
@@ -371,6 +375,8 @@ defmodule Homedash.Data do
   def all_electricity_since(oldest), do: measurements_since(Electricity, oldest)
 
   def recent_electricity(days \\ 7), do: bucket_by_hour(Electricity, days)
+
+  def last_days_electricity(days \\ 7), do: bucket_by_day(Electricity, days)
 
   def historical_electricity(days \\ 14), do: bucket_by_week(Electricity, days)
 

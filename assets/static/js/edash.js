@@ -1,5 +1,8 @@
 // Chart for electricity
 var gradientChartOptionsConfigurationWithTooltipPurple = {
+    layout: {
+        padding: 0
+    },
     maintainAspectRatio: false,
     animation: {
         duration: 0
@@ -8,14 +11,17 @@ var gradientChartOptionsConfigurationWithTooltipPurple = {
         display: false
     },
     elements: {
-        line: { fill: false }
+        line: {
+            fill: true,
+            backgroundColor: "yellow"
+        }
     },
     tooltips: {
         backgroundColor: '#FFFFFF',
         titleFontColor: '#FFFFFF',
         bodyFontColor: 'black',
-        bodySpacing: 4,
-        xPadding: 12,
+        bodySpacing: 0,
+        xPadding: 0,
         mode: "nearest",
         intersect: 0,
         position: "nearest"
@@ -25,26 +31,32 @@ var gradientChartOptionsConfigurationWithTooltipPurple = {
         yAxes: [{
             barPercentage: 1.6,
             gridLines: {
-                drawBorder: false,
+                drawBorder: true,
                 color: 'transparent',
                 zeroLineColor: "transparent",
             },
             ticks: {
-                padding: 20,
-                fontColor: "black"
+                padding: -5,
+                fontColor: "black",
+                display: true,
+                autoSkip: true,
+                maxTicksLimit: 3
             }
         }],
 
         xAxes: [{
             barPercentage: 1.6,
             gridLines: {
-                drawBorder: false,
+                drawBorder: true,
                 color: 'rgba(225,78,202,0.0)',
-                zeroLineColor: "transparent",
+                zeroLineColor: "black",
             },
             ticks: {
-                padding: 20,
-                fontColor: "black"
+                padding: 0,
+                fontColor: "black",
+                display: true,
+                autoSkip: true,
+                maxTicksLimit: 3
             }
         }]
     }

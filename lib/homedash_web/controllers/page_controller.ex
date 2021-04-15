@@ -76,11 +76,11 @@ defmodule HomedashWeb.PageController do
   end
 
   def edash(conn, _params) do
-    weeks = 4
+    days = 8
     data = %{
-      :gas => historical_gas(weeks),
-      :solar => historical_solar(weeks),
-      :electricity => historical_electricity(weeks),
+      :gas => last_days_gas(days),
+      :solar => last_days_solar(days),
+      :electricity => last_days_electricity(days),
       :today => %{
         :gas => gas_today(),
         :solar => solar_today(),
