@@ -2,7 +2,9 @@
 <span id="gas" data-labels='<%= raw(@data.recent.gas |> labels_hour()) %>' data-values='<%= raw(@data.recent.gas |> values_recent() )%>'></span>
 <span id="electricity" data-labels='<%= raw(@data.recent.electricity |> labels_hour()) %>' data-values='<%= raw(@data.recent.electricity |> values_recent() )%>'></span>
 
+
 <%= live_render(@conn, HomedashWeb.Live) %>
+
 
 <div class="row">
    <div class="col-12">
@@ -60,28 +62,3 @@
       <h5 class="card-title text-center"><span class="red" data-feather="thermometer"></span> <%= @data.gas_today |> format_float() %> m<sup>3</sup></h5>
    </div>
 </div>
-
-
-<%#
-
-
-<div class="col-md-6">
-   <div class="card">
-      <div class="card-header">
-         <h4 class="card-title">Notification states</h4>
-      </div>
-      <div class="card-body">
-         <div class="alert alert-primary alert-dismissible fade show" role="alert">
-         <button type="button" class="close" aria-label="Close">
-         <span aria-hidden="true">×</span></button><span><b>Primary - </b>This is a regular notification made with ".alert-primary"</span></div>
-         <div class="alert alert-info alert-dismissible fade show" role="alert"><button type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button><span><b>Info - </b>This is a regular notification made with ".alert-info"</span></div>
-         <div class="alert alert-success alert-dismissible fade show" role="alert"><button type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button><span><b>Success - </b>This is a regular notification made with ".alert-success"</span></div>
-         <div class="alert alert-warning alert-dismissible fade show" role="alert"><button type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button><span><b>Warning - </b>This is a regular notification made with ".alert-warning"</span></div>
-         <div class="alert alert-danger alert-dismissible fade show" role="alert"><button type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button><span><b>Danger - </b>This is a regular notification made with ".alert-danger"</span></div>
-      </div>
-   </div>
-</div>
-
-
-
- %>

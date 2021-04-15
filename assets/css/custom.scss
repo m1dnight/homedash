@@ -57,12 +57,12 @@ body {
 .sidebar-sticky {
   position: -webkit-sticky;
   position: sticky;
-  top: 48px; /* Height of navbar */
+  top: 0px; /* Height of navbar */
   height: calc(100vh - 48px);
   padding-top: 0.5rem;
   overflow-x: hidden;
   overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-  padding-top: 2rem;
+  padding-top: 0rem;
 }
 
 .sidebar .nav-link {

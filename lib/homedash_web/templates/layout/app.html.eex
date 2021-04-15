@@ -25,12 +25,6 @@
             <li class="nav-item text-nowrap">
                <a class="nav-link" href="<%= Routes.page_path(@conn, :historical) %>">Historical</a>
             </li>
-            <li class="nav-item text-nowrap">
-               <a class="nav-link" href="#">Current Month</a>
-            </li>
-            <li class="nav-item text-nowrap">
-               <a class="nav-link" href="<%= Routes.page_path(@conn, :insight) %>">Insight</a>
-            </li>
          </ul>
       </nav>
       <div class="container-fluid">
@@ -57,23 +51,6 @@
                         <a class="nav-link" href="<%= Routes.page_path(@conn, :historical) %>">
                         <span data-feather="bar-chart-2"></span>
                         Historical
-                        </a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="<%= Routes.page_path(@conn, :insight) %>">
-                        <span data-feather="eye"></span>
-                        Insight
-                        </a>
-                     </li>
-                  </ul>
-                  <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1">
-                     <span>Controls</span>
-                  </h6>
-                  <ul class="nav flex-column mb-2">
-                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                        <span data-feather="sun"></span>
-                        Current month
                         </a>
                      </li>
                   </ul>

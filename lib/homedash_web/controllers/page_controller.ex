@@ -55,26 +55,6 @@ defmodule HomedashWeb.PageController do
     render(conn, "historical.html", data: data)
   end
 
-  def insight(conn, _params) do
-    data = %{
-      :gas_today => gas_today(),
-      :gas_average_30 => gas_daily_average(30),
-      :gas_average_90 => gas_daily_average(90),
-      :solar_today => solar_today(),
-      :solar_average_30 => solar_daily_average(30),
-      :solar_average_90 => solar_daily_average(90),
-      :electricity_today => electricity_today(),
-      :electricity_average_30 => electricity_daily_average(30),
-      :electricity_average_90 => electricity_daily_average(90)
-    }
-
-    render(conn, "insight.html", data: data)
-  end
-
-  def debug(conn, _params) do
-    render(conn, "debug.html", content: inspect(debug(), pretty: true))
-  end
-
   def edash(conn, _params) do
     days = 8
     data = %{
