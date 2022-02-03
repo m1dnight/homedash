@@ -88,7 +88,7 @@ if (elem != null) {
     };
 
     var myChart = new Chart(ctx, {
-        type: 'line',
+        type: 'bar',
         data: data,
         options: gradientChartOptionsConfigurationWithTooltipPurple
     });
@@ -133,7 +133,7 @@ if (elem != null) {
     };
 
     var myChart = new Chart(ctx, {
-        type: 'line',
+        type: 'bar',
         data: data,
         options: gradientChartOptionsConfigurationWithTooltipPurple
     });
@@ -178,7 +178,7 @@ if (elem != null) {
     };
 
     var myChart = new Chart(ctx, {
-        type: 'line',
+        type: 'bar',
         data: data,
         options: gradientChartOptionsConfigurationWithTooltipPurple
     });
