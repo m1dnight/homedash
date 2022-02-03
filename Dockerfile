@@ -1,10 +1,10 @@
 ################################################################################
 # Build Image
-FROM elixir:alpine as build
+FROM alpine:3.14 as build
 LABEL maintainer "Christophe De Troyer <christophe@call-cc.be>"
 
 # Install compile-time dependencies
-RUN apk add --update git build-base nodejs npm yarn python3
+RUN apk add --update git build-base nodejs npm yarn python3 elixir
 RUN mkdir /app 
 WORKDIR /app 
 
@@ -36,9 +36,9 @@ RUN mix release
 ################################################################################
 # Release Image
 
-FROM alpine:latest AS app
+FROM alpine:3.14 AS app
 
-RUN apk add --update bash openssl postgresql-client
+RUN apk add --update bash openssl postgresql-client libstdc++
 ENV MIX_ENV=prod
 
 # Make the working directory for the application.
